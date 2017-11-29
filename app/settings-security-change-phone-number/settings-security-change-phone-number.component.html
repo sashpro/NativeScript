@@ -1,0 +1,28 @@
+<!-- Settings Change password -->
+
+<div class="modal-header settings-modal">
+  <h4 class="modal-title pull-left">Your New Phone Number: {{ phone }}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body settings-modal">
+  <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <form [formGroup]="phoneForm" novalidate (ngSubmit)="phoneForm.valid && changePhone()">
+    <div class="form-group" [ngClass]="{ 'has-error': phoneForm.controls['mfa_code'].invalid && phoneForm.controls['mfa_code'].touched }">
+      <div class="help-block">
+        Please enter the code from the sms.
+      </div>
+      <input type="text" class="form-control" id="mfa_code" name="mfa_code"
+               formControlName="mfa_code" [formGroup]="phoneForm"
+               [(ngModel)]="phoneModel.mfa_code"/>
+    </div>
+    <div class="form-group send-btn-from">
+      <button class="btn settings-btn" [disabled]="phoneForm.invalid">
+        Change Phone
+      </button>
+    </div>
+  </form>
+
+</div>

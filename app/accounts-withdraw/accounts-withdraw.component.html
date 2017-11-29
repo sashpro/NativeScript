@@ -1,0 +1,53 @@
+<!-- Accounts Withdraw -->
+
+<div class="modal-header withdraw-modal">
+  <h4 class="modal-title pull-left">Withdraw money</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body withdraw-modal">
+  <div class="alert alert-success" *ngIf="messageSuccess">
+    Successful.
+  </div>
+  <div class="alert alert-danger" *ngIf="messageError">
+    {{ messageError }}
+  </div>
+
+  <form name="form" (ngSubmit)="f.form.valid && withdraw()" #f="ngForm" novalidate>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !crypto_address.valid }">
+      <label for="crypto_address">Recipient address:</label>
+      <input type="text" class="form-control" name="crypto_address" id="crypto_address"
+             [(ngModel)]="withdrawModel.crypto_address" #crypto_address="ngModel"
+             required/>
+      <div *ngIf="f.submitted && !crypto_address.valid" class="help-block">
+        Recipient address is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="address_name">Address name:</label>
+      <input type="text" class="form-control" name="address_name" id="address_name"
+             [(ngModel)]="withdrawModel.address_name" #crypto_address="ngModel"/>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !amount.valid }">
+      <label for="amount">Amount:</label>
+      <input type="number" class="form-control" name="amount" id="amount"
+             [(ngModel)]="withdrawModel.amount" #amount="ngModel"
+             required number/>
+      <div *ngIf="f.submitted && !amount.valid" class="help-block">
+        Amount is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="message">Message to the recipient:</label>
+      <input type="text" class="form-control" name="message" id="message"
+             [(ngModel)]="withdrawModel.message" #message="ngModel"/>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary">Withdraw</button>
+      <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+    </div>
+  </form>
+
+</div>

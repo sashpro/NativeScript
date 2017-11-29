@@ -1,0 +1,12 @@
+<!-- Settings Navigation Bar -->
+
+<nav class="navbar navbar-settings">
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/settings/profile" class="settings-link"
+             [routerLinkActive]="['settings-navigation-active']">My profile</a></li>
+      <li><a routerLink="/settings/security" class="settings-link"
+             [routerLinkActive]="['settings-navigation-active']">Security</a></li>
+    </ul>
+</nav>
+
+<router-outlet></router-outlet>

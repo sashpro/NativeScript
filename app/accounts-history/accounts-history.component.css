@@ -1,0 +1,26 @@
+.transaction {
+    margin: 10px;
+    color: #757575;
+    border: 1px solid #6495ED;
+    border-radius: 5px;
+}
+
+.transaction-time {
+    padding: 10px;
+    width: 100px;
+    color: #6495ED;
+}
+
+
+.transaction-body {
+    padding: 10px;
+    border-left: 1px solid #6495ED;
+}
+
+.transaction-content {
+    margin: 0px;
+}
+
+.user-info {
+    text-decoration:underline;
+}

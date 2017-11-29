@@ -1,0 +1,34 @@
+.sell-col {
+    color: #6495ED;
+    border: 1px solid #6495ED;
+    border-radius: 5px;
+}
+
+.sell-container {
+    margin: 2%;
+}
+
+.sell-border-bottom {
+    border-bottom: 1px solid #6495ED;
+}
+
+.sell-title{
+    padding-bottom: 30px;
+}
+
+.sell-glyphicon {
+    margin:10px;
+    font-size: 30px;
+}
+
+.sell-media-body {
+    padding: 10px;
+}
+
+.sell-media-left {
+    float: left;
+}
+
+.sell-media-right {
+    float: right;
+}

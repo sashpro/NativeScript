@@ -1,0 +1,92 @@
+<!-- Sell -->
+
+<div class="sell-col">
+  <div class="alert alert-success" *ngIf="messageSuccess">
+    Successful.
+  </div>
+  <div class="alert alert-danger" *ngIf="messageError">
+    {{ messageError }}
+  </div>
+
+  <form [formGroup]="sellForm" novalidate (ngSubmit)="sellForm.valid && sell()">
+    <div class="form-group"
+         [ngClass]="{ 'has-error': sellForm.controls['wallet_from'].invalid && sellForm.controls['wallet_from'].touched }">
+      <label for="wallet_from" class="sell-label">Sell from wallet:</label>
+      <select class="form-control form-sell" name="wallet_from" id="wallet_from"
+              formControlName="wallet_from" [formGroup]="sellForm"
+              [(ngModel)]="sellModel.wallet_from" (ngModelChange)="getRate($event)">
+        <option  *ngFor="let walletFrom of walletsFrom" [ngValue]=walletFrom>
+          {{ walletFrom.name }} - {{ walletFrom.amount | currencyFormat: walletFrom.currency }} {{ walletFrom.currency }}
+        </option>
+      </select>
+      <div class="help-block"
+           *ngIf="sellForm.controls['wallet_from'].invalid && sellForm.controls['wallet_from'].touched">
+        This field is required
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{ 'has-error': sellForm.controls['wallet_to'].invalid && sellForm.controls['wallet_to'].touched }">
+      <label for="wallet_to" class="sell-label">Deposit USD to:</label>
+      <select class="form-control form-sell" name="wallet_from" id="wallet_to"
+              formControlName="wallet_to" [formGroup]="sellForm"
+              [(ngModel)]="sellModel.wallet_to">
+        <option  *ngFor="let walletTo of walletsTo" [ngValue]=walletTo>
+          {{ walletTo.name }} - {{ walletTo.amount | currencyFormat: walletTo.currency }} {{ walletTo.currency }}
+        </option>
+      </select>
+      <div class="help-block"
+           *ngIf="sellForm.controls['wallet_to'].invalid && sellForm.controls['wallet_to'].touched">
+        This field is required
+      </div>
+    </div>
+
+    <div  *ngIf="sellModel.wallet_from && sellModel.wallet_to">
+      <label class="sell-label">Amount:</label>
+      <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around" fxFlex="49%"
+             [ngClass]="{ 'has-error': sellForm.controls['amount'].invalid && sellForm.controls['amount'].touched }">
+          <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around" fxFlex="29%">
+            <label for="amount" class="amount-label">{{  sellForm.value.wallet_from.currency  }}:</label>
+          </div>
+          <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around" fxFlex="69%">
+            <input type="number" class="form-control form-sell" name="amount" id="amount" formControlName="amount"
+                   (input)="amountToUSD($event.target.value)" [formGroup]="sellForm"
+                   [(ngModel)]="sellModel.amount" min="0"/>
+          </div>
+          <div class="help-block"
+               *ngIf="sellForm.controls['amount'].hasError('required') && sellForm.controls['amount'].touched">
+            This field is required
+          </div>
+          <div class="help-block"
+               *ngIf="sellForm.controls['amount'].hasError('min') && sellForm.controls['amount'].touched">
+            Invalid amount
+          </div>
+        </div>
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around" fxFlex="49%">
+          <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around" fxFlex="29%">
+            <label for="other_amount" class="amount-label">{{ sellForm.value.wallet_to.currency }}:</label>
+          </div>
+          <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around" fxFlex="69%">
+            <input type="number" class="form-control form-sell" name="other_amount" id="other_amount" formControlName="other_amount"
+                   (input)="USDtoAmount($event.target.value)" [formGroup]="sellForm"
+                   [(ngModel)]="sellModel.other_amount" min="0"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="message" class="sell-label">Message:</label>
+      <input class="form-control form-sell" name="message" id="message"
+             formControlName="message" [formGroup]="sellForm"
+             [(ngModel)]="sellModel.message"/>
+    </div>
+    <div class="form-group sell-btn-from">
+      <button class="btn sell-btn btn-block" [disabled]="sellForm.invalid">
+        Sell
+      </button>
+    </div>
+  </form>
+</div>
+

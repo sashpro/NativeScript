@@ -1,0 +1,91 @@
+<!-- Admin Users Information -->
+
+<div class="users">
+  <div *ngIf="user; else notUser">
+  <h4 class="text-border-bottom ">{{ user.first_name }} {{ user.last_name }}</h4>
+    <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutWrap="wrap"
+         fxLayoutAlign="space-between" *ngIf="user.username">
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="24%">
+        <p>Username:</p>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="74%">
+        <p>{{ user.username }}</p>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutWrap="wrap"
+         fxLayoutAlign="space-between" *ngIf="user.email">
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="24%">
+        <p>Email:</p>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="74%">
+        <p>{{ user.email }}</p>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutWrap="wrap"
+         fxLayoutAlign="space-between" *ngIf="user.phone">
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="24%">
+        <p>Phone:</p>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="74%">
+        <p>{{ user.phone }}</p>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutWrap="wrap"
+         fxLayoutAlign="space-between" *ngIf="user.date_of_birth">
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="24%">
+        <p>Date of birth:</p>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="74%">
+        <p>{{ user.date_of_birth | date : "dd.MM.yy" }}</p>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutWrap="wrap"
+         fxLayoutAlign="space-between" *ngIf="user.country">
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="24%">
+        <p>Country:</p>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="74%">
+        <p>{{ user.country }}</p>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutWrap="wrap"
+         fxLayoutAlign="space-between" *ngIf="user.state">
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="24%">
+        <p>State:</p>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="74%">
+        <p>{{ user.state }}</p>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutWrap="wrap"
+         fxLayoutAlign="space-between" *ngIf="user.postal_code">
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="24%">
+        <p>Postal Code:</p>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="74%">
+        <p>{{ user.postal_code }}</p>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutWrap="wrap"
+         fxLayoutAlign="space-between" *ngIf="user.city">
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="24%">
+        <p>City:</p>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="74%">
+        <p>{{ user.city }}</p>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutWrap="wrap"
+         fxLayoutAlign="space-between" *ngIf="user.address">
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="24%">
+        <p>Address:</p>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="74%">
+        <p>{{ user.address }}</p>
+      </div>
+    </div>
+  </div>
+  <ng-template #notUser>
+    <h4 class="loading-message">Loading...</h4>
+  </ng-template>
+</div>

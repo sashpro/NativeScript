@@ -1,0 +1,23 @@
+<!-- Send/Request -->
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="send-request-col">
+      <div class="row send-request-navigation-row">
+        <div class="col-sm-6 send-request-navigation-col">
+          <button routerLink="/send-request/send" type="button" class="btn send-request-navigation-btn"
+                  [routerLinkActive]="['send-request-navigation-btn-active']">
+            Send
+          </button>
+        </div>
+        <div class="col-sm-6 send-request-navigation-col">
+          <button routerLink="/send-request/request" type="button" class="btn send-request-navigation-btn"
+                  [routerLinkActive]="['send-request-navigation-btn-active']">
+            Request
+          </button>
+        </div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

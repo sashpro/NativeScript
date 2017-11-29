@@ -1,0 +1,19 @@
+<div class="modal-header logout-modal">
+  <h4 class="modal-title pull-left">Auto Logout</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body logout-modal">
+  <h3 class="message">The time of your session has expired.</h3>
+  <h3 class="message">Please, login again.</h3>
+
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+  <div fxFlex="79%"></div>
+  <div fxFlex="19%">
+    <button class="btn logout-btn btn-block" (click)="bsModalRef.hide()">Cancel</button>
+  </div>
+</div>
+</div>

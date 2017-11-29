@@ -1,0 +1,18 @@
+.navbar-cryptosite {
+  padding: 6px;
+  background-color: #ffffff;
+  color: #757575;
+}
+
+.navbar-amount {
+  margin: 0px;
+}
+
+.navigation-active {
+  color: #6495ED!important;
+}
+
+.refresh-btn {
+  padding: 0 15px;
+  cursor: pointer;
+}

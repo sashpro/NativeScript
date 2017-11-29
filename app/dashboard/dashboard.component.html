@@ -1,0 +1,57 @@
+<!-- Dashboard -->
+
+
+<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column"
+     fxLayoutAlign="space-between none">
+
+  <!-- Graph -->
+  <div fxLayoutWrap="wrap" fxLayoutAlign="space-between" fxFlex="64%">
+    <div fxLayout="column" fxLayout.xs="column" fxLayout.sm="column"
+         fxLayoutAlign="none" fxFlex="100%">
+      <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row"
+           fxLayoutAlign="space-evenly center">
+        <div fxLayoutWrap="wrap" fxLayoutAlign="space-around" fxFlex="39%" fxFlexOffset="10">
+          <button type="button" class="btn currency-btn" [class.active]="currency=='FRGC'"
+                (click)="changeCurrency('FRGC')">FRGC</button>
+        </div>
+        <div fxLayoutWrap="wrap" fxLayoutAlign="space-around" fxFlex="39%" fxFlexOffset="2">
+          <button type="button" class="btn currency-btn" [class.active]="currency=='BTC'"
+                (click)="changeCurrency('BTC')">BTC</button>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+        <div fxLayoutWrap="wrap" fxLayoutAlign="space-around none" fxFlex="100%">
+          <div class="graph">
+            <nvd3 [options]="options" [data]="data"></nvd3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wallets list -->
+  <div fxLayoutWrap="wrap" fxLayoutAlign="space-between" fxFlex="34%">
+
+    <div fxLayout="column" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="none" fxFlex="100%">
+      <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+        <div fxLayoutWrap="wrap" fxLayoutAlign="space-between none" fxFlex="100%">
+          <h4 class="text-border-bottom">Wallets</h4>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutWrap="wrap"
+           fxLayoutAlign="space-between" *ngFor="let wallet of wallets">
+        <div fxLayoutWrap="wrap" fxLayoutAlign="space-between start" fxFlex="54%">
+          <p>{{ wallet.name }}</p>
+        </div>
+        <div fxLayoutWrap="wrap" fxLayoutAlign="end" fxFlex="29%">
+          <p>{{ wallet.amount | currencyFormat: wallet.currency }}</p>
+        </div>
+        <div fxLayoutWrap="wrap" fxLayoutAlign="space-between start" fxFlex="14%">
+          <p>{{ wallet.currency }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

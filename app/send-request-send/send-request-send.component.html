@@ -1,0 +1,70 @@
+<!-- Send -->
+
+<div class="send-col">
+  <div class="alert alert-success" *ngIf="successMessage">
+    Successful.
+  </div>
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <form [formGroup]="sendForm" novalidate (ngSubmit)="sendForm.valid && sendMoney()">
+    <div class="form-group"
+         [ngClass]="{ 'has-error': sendForm.controls['receiver'].invalid && sendForm.controls['receiver'].touched }">
+      <label for="receiver" class="send-label">Recipient:</label>
+      <input type="text" class="form-control form-send" id="receiver" name="receiver"
+             formControlName="receiver" [formGroup]="sendForm"
+             [(ngModel)]="sendModel.receiver" placeholder="E-mail address"/>
+      <div class="help-block"
+           *ngIf="sendForm.controls['receiver'].invalid && sendForm.controls['receiver'].touched">
+        This field is required
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{ 'has-error': sendForm.controls['wallet_from'].invalid && sendForm.controls['wallet_from'].touched }">
+      <label for="wallet_from" class="send-label">Wallet from:</label>
+      <select class="form-control form-send" id="wallet_from" name="wallet_from"
+             formControlName="wallet_from" [formGroup]="sendForm"
+             [(ngModel)]="sendModel.wallet_from">
+        <option  *ngFor="let wallet of wallets" [value]=wallet.pk>
+          {{ wallet.name }} - {{ wallet.amount | currencyFormat: wallet.currency }} {{ wallet.currency }}
+        </option>
+      </select>
+      <div class="help-block"
+           *ngIf="sendForm.controls['wallet_from'].invalid && sendForm.controls['wallet_from'].touched">
+        This field is required
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{ 'has-error': sendForm.controls['amount'].invalid && sendForm.controls['amount'].touched }">
+      <label for="amount" class="send-label">Amount:</label>
+      <input type="number" class="form-control form-send" id="amount" name="amount"
+             formControlName="amount" [formGroup]="sendForm"
+             [(ngModel)]="sendModel.amount" min="0"/>
+      <div class="help-block"
+           *ngIf="sendForm.controls['amount'].hasError('required') && sendForm.controls['amount'].touched">
+        This field is required
+      </div>
+      <div class="help-block"
+           *ngIf="sendForm.controls['amount'].hasError('min') && sendForm.controls['amount'].touched">
+        Invalid amount
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="message" class="send-label">Note:</label>
+      <input type="text" class="form-control form-send" id="message" name="message"
+             formControlName="message" [formGroup]="sendForm"
+             [(ngModel)]="sendModel.message"
+             placeholder="Write an optional message to your addressee"/>
+    </div>
+
+    <div class="form-group send-btn-from">
+      <button class="btn send-btn btn-block" [disabled]="sendForm.invalid || sending">
+        Send
+      </button>
+    </div>
+  </form>
+</div>

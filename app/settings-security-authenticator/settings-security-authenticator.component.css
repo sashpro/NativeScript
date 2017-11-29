@@ -1,0 +1,16 @@
+.settings-modal {
+    color: #757575;
+    border-bottom: 1px solid #6495ED;
+}
+
+input.ng-touched.ng-invalid {
+    background-color: rgb(255, 214, 214);
+}
+input.ng-touched.ng-valid {
+    background-color: #FFFFFF;
+}
+input.ng-touched:focus {
+    background-color: #FFFFFF;
+    border-color: #74d36b;
+    outline: 0;
+}

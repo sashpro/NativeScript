@@ -1,0 +1,28 @@
+.transaction {
+  margin:0px;
+  padding: 10px;
+}
+
+.transaction-time {
+  padding: 10px;
+  color: #6495ED;
+}
+
+
+.transaction-body {
+  padding: 10px;
+  border: 1px solid #6495ED;
+  border-radius: 5px;
+}
+
+.transaction-content {
+  margin: 0px;
+}
+
+.log-info:hover {
+display: block;
+}
+
+.log-info {
+display: none;
+}

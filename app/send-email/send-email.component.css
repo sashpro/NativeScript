@@ -1,0 +1,18 @@
+.send-modal {
+    color: #757575;
+    border-bottom: 1px solid #6495ED;
+}
+
+.send-btn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+    background-color: #6495ED;
+    border: 1px solid #6495ED;
+    border-radius: 5px;
+}
+
+.send-btn:hover {
+    color: #6495ED;
+    background-color: #FFFFFF;
+}

@@ -1,0 +1,19 @@
+.settings-container {
+  margin: 10px;
+  padding: 10px;
+}
+
+.settings-heading {
+  color: #6495ED;
+}
+
+.settings-btn {
+  color:  #757575;
+  background-color: #FFFFFF;
+  border-color:  #757575;
+  float: right;
+}
+
+.settings-btn:hover {
+  background-color: #E8ECFF;
+}

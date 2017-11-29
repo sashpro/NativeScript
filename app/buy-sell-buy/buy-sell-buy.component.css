@@ -1,0 +1,35 @@
+.buy-col {
+    margin-top: 40px;
+    padding: 20px;
+    color: #757575;
+}
+
+.buy-label {
+    color: #6495ED;
+}
+
+.amount-label {
+    margin-top: 6px;
+}
+
+.form-buy {
+    border-color: #6495ED;
+}
+
+.buy-btn-from {
+    margin: 0px;
+}
+
+.buy-btn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+    background-color: #6495ED;
+    border: 1px solid #6495ED;
+    border-radius: 5px;
+}
+
+.buy-btn:hover {
+    color: #6495ED;
+    background-color: #FFFFFF;
+}

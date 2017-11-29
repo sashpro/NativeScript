@@ -1,0 +1,31 @@
+.container {
+  margin: 0 20%;
+  padding: 30px 0;
+  width: 60%;
+}
+
+.input-email {
+  color: 	#1E90FF;
+  background-color: #FFFFFF;
+  border: 3px solid	#6495ED;
+  border-radius: 4px;
+}
+
+.button-email {
+  color: #FFFFFF;
+  background-color: #6495ED;
+}
+
+@media (max-width: 700px){
+  .container  {
+    margin: 0 5%;
+    width: 90%;
+  }
+}
+
+@media (max-width: 500px){
+  .container  {
+    margin: 0;
+    width: 100%;
+  }
+}

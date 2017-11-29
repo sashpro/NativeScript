@@ -1,0 +1,65 @@
+<!-- Admin Users Page -->
+
+
+<!-- Filter Users -->
+<input type="text" class="form-control field" [value]="searchSubstring"
+       [(ngModel)]="searchSubstring" (keyup)="searchSubstringChanged.next($event.target.value)"
+       placeholder="Search by first name, last name or email"/>
+
+<!-- Users Information -->
+<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="space-between none">
+  <div class="users-col scroll-frame" fxFlex="49%">
+    <div *ngIf="users; else notUsers">
+      <div *ngIf="users?.length > 0; else notMatch">
+        <div *ngFor="let user of users | orderBy: 'pk': True">
+          <div [routerLink]="['/users', user.pk, 'wallets', user.pk]" class="media users" [ngClass]="{'active-user': user.pk==selectedUserID}">
+            <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutAlign="space-between none">
+              <div fxFlex="17%">
+                <img src="{{user.avatar}}" onError="this.src='/assets/img/no_user_photo.png'" class="media-object" style="width:60px"/>
+              </div>
+              <div class="users-info" fxFlex="59%">
+                <h4 class="media-heading">{{ user.first_name }} {{ user.last_name }}</h4>
+                <p class="users-email">{{ user.email }}</p>
+              </div>
+              <div fxFlex="21%">
+                <div fxLayout="column" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="end" fxFlex="100%">
+                  <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutAlign="end">
+                      <div class="user-is-active" *ngIf="user.is_active">
+                          <p><i class="fa fa-check" style="color: green"></i> Active</p>
+                      </div>
+                      <div class="user-is-active" *ngIf="!user.is_active">
+                          <p><i class="fa fa-close" style="color: red"></i> Deactive</p>
+                      </div>
+                  </div>
+                  <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutAlign="end">
+                    <button *ngIf="user.is_active" type="button" class="btn user-btn"
+                            (click)="activateDeactivateUser(user.pk, false)">
+                        Disable</button>
+                    <button *ngIf="!user.is_active" type="button" class="btn user-btn"
+                            (click)="activateDeactivateUser(user.pk, true)">
+                        Enable</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #notUsers>
+      <div class="media users">
+          <h4 class="media-heading">Loading...</h4>
+      </div>
+    </ng-template>
+    <ng-template #notMatch>
+      <div class="media users">
+          <h4 class="media-heading">On request, nothing was found.</h4>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- User Detail Information -->
+  <div class="users-col scroll-frame" fxFlex="49%" *ngIf="selectedUserID">
+    <router-outlet></router-outlet>
+  </div>
+</div>

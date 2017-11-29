@@ -1,0 +1,61 @@
+.margin {
+  margin-bottom: 45px;
+}
+
+.title {
+  color: 	#6495ED;
+}
+
+.container-form {
+  margin-left:20%;
+  margin-right:20%;
+  width: 60%;
+}
+
+.input-email {
+  color: 	#1E90FF;
+  background-color: #FFFFFF;
+  border: 3px solid	#6495ED;
+  border-radius: 4px;
+}
+
+.button-email {
+  color: #FFFFFF;
+  background-color: #6495ED;
+  border: 3px solid #6495ED;
+  border-radius: 4px;
+}
+
+.container-button {
+  padding-top: 20px;
+  margin-left:30%;
+  margin-right:30%;
+  width: 40%;
+}
+
+.button-group {
+  color: #757575;
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+.container-block {
+  color: #757575;
+  padding: 10px;
+}
+
+.button-block {
+  border-radius: 20px;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+.active {
+  width: 100%!important;
+  height: 100%!important;
+}
+
+.indicator {
+  position: static!important;
+}

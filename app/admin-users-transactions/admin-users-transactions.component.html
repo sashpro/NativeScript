@@ -1,0 +1,19 @@
+<!-- Admin Users Transactions -->
+
+
+<div *ngIf="loggers?.length > 0; else notTransaction">
+  <div class="media transaction" *ngFor="let log of loggers">
+    <div class="media-left transaction-time">
+    </div>
+    <div class="media-body transaction-body">
+      <p class="transaction-content">
+        {{ log.date }}
+        <br>
+        {{ log.action }}
+      </p>
+    </div>
+  </div>
+</div>
+<ng-template #notTransaction>
+  <div class="transaction text-center">User log is empty.</div>
+</ng-template>

@@ -1,0 +1,25 @@
+.buy-sell-col {
+  color: #757575;
+  border: 1px solid #6495ED;
+  border-radius: 5px;
+}
+
+.buy-sell-navigation-row {
+  margin: 0px;
+}
+
+.buy-sell-navigation-col {
+  padding: 0px;
+}
+
+.buy-sell-navigation-btn {
+  padding: 10px;
+  width:100%;
+  color: #6495ED;
+  background-color: #FFFFFF;
+}
+
+.buy-sell-navigation-btn-active {
+  color: #FFFFFF;
+  background-color: #6495ED;
+}

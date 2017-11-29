@@ -1,0 +1,90 @@
+<!-- Accounts Deposit USD -->
+
+<div class="modal-header deposit-modal">
+  <h4 class="modal-title pull-left">{{ walletCurrency }} Deposit</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body deposit-modal">
+  <div *ngIf="services; else notServices">
+    <form ngNoForm name="form" method="post" action="https://wallet.advcash.com/sci/" target="_blank">
+      <input type="hidden" name="ac_account_email" [value]=depositForm.ac_account_email />
+      <input type="hidden" name="ac_sci_name" [value]=depositForm.ac_sci_name />
+      <input type="hidden" name="ac_amount" [value]=depositForm.ac_amount />
+      <input type="hidden" name="ac_currency" [value]=depositForm.ac_currency />
+      <input type="hidden" name="ac_order_id" [value]=depositForm.ac_order_id />
+      <input type="hidden" name="ac_sign" [value]=depositForm.ac_sign />
+    </form>
+    <form name="form" (ngSubmit)="f.form.valid && depositUSD()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+          <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="19%">
+            <label for="service">Service:</label>
+          </div>
+          <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="79%">
+            <div class="services" *ngFor="let item of services">
+              <label *ngIf="item.service_type=='ADVCASH'; else notADVCASH"><input type="radio" id="service" name="service" [value]=item
+                   [(ngModel)]="depositModel.service" #service="ngModel">{{ item.name }}</label>
+              <ng-template #notADVCASH>
+                <label><input type="radio" disabled>{{ item.name }}</label>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="depositModel.service">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !amount.valid }">
+          <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+            <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="19%">
+              <label class="deposit-label" for="amount">Deposit:</label>
+            </div>
+            <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="79%">
+              <input type="number" class="form-control" id="amount" name="amount"
+                     [(ngModel)]="depositModel.amount" #amount="ngModel"
+                     min="0" step="0.01" required (ngModelChange)="calculateAmount($event)"/>
+              <div *ngIf="f.submitted && !depositModel.amount" class="help-block">
+                This field is required
+              </div>
+
+              <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap"
+                   fxLayoutAlign="space-between" *ngIf="totalAmount">
+                <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="49%">
+                  <label class="deposit-label" for="feeAmount">Fee:</label>
+                  <input type="text" class="form-control" id="feeAmount" name="feeAmount"
+                         [(ngModel)]="feeAmount" disabled/>
+                </div>
+                <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="49%">
+                  <label class="deposit-label" for="totalAmount">Total amount:</label>
+                  <input type="text" class="form-control" id="totalAmount" name="totalAmount"
+                         [(ngModel)]="totalAmount" disabled/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+            <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="19%">
+              <label class="deposit-label" for="comments">Message:</label>
+            </div>
+            <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="79%">
+              <input type="text" class="form-control" id="comments" name="comments"
+                     [(ngModel)]="depositModel.comments" #comments="ngModel"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" [disabled]="!depositModel.amount">Deposit</button>
+        <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+      </div>
+    </form>
+  </div>
+  <ng-template #notServices>
+      <div class="text-center container-fluid">
+        <h4 class="media-heading">Loading...</h4>
+      </div>
+  </ng-template>
+</div>

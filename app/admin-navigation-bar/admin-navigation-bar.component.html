@@ -1,0 +1,51 @@
+<!-- Admin Navigation Bar -->
+
+
+<nav class="navbar-container navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/approve" [routerLinkActive]="['navigation-active']">
+        Approve
+      </a></li>
+      <li><a routerLink="/rates-fees" [routerLinkActive]="['navigation-active']">
+        Rates / Fees
+      </a></li>
+      <li><a routerLink="/users" [routerLinkActive]="['navigation-active']">
+        Users
+      </a></li>
+      <li><a routerLink="/logs" [routerLinkActive]="['navigation-active']">
+        Logs
+      </a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" [ngClass]="{'menu-bar-mobile': mobileMenuSate == false}">
+      <li><p class="navbar-text refresh-btn" (click)="refresh()"> Refresh </p></li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="navbar-container navbar-cryptosite" *ngIf="(totalAmount | json) != ({} | json)">
+  <div fxLayout="row" fxLayout.sm="row" fxLayout.xs="column"
+       fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+    <div fxFlex="24%"><p class="navbar-amount">Total:</p></div>
+    <div fxFlex="24%"><p class="navbar-amount">USD: {{ totalAmount.USD | currencyFormat: 'USD' }}</p></div>
+    <div fxFlex="24%"><p class="navbar-amount">FRGC: {{ totalAmount.FRGC | currencyFormat: 'FRGC' }}</p></div>
+    <div fxFlex="24%"><p class="git navbar-amount">BTC: {{ totalAmount.BTC | currencyFormat: 'BTC' }}</p></div>
+  </div>
+</nav>
+
+<nav class="navbar-container navbar-cryptosite" *ngIf="(wallets | json) != ({} | json)">
+  <div fxLayout="row" fxLayout.sm="row" fxLayout.xs="column"
+       fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+    <div fxFlex="24%"><p class="navbar-amount">System:</p></div>
+    <div fxFlex="24%"><p class="navbar-amount">USD: {{ wallets.USD | currencyFormat: 'USD' }}</p></div>
+    <div fxFlex="24%"><p class="navbar-amount">FRGC: {{ wallets.FRGC | currencyFormat: 'FRGC' }}</p></div>
+    <div fxFlex="24%"><p class="navbar-amount">BTC: {{ wallets.BTC | currencyFormat: 'BTC' }}</p></div>
+  </div>
+</nav>
+<nav class="navbar-container navbar-cryptosite" *ngIf="wallets">
+  <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column"
+       fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+    <div fxFlex="49%"><p class="navbar-amount">FRGC address: FSvDcP7to3R8hGrSVEK9kUwpJtPSigHzFw</p></div>
+    <div fxFlex="49%"><p class="navbar-amount">BTC address: 1KhFexaAFs5BRr2UjYBG76ceCWwWp1EQui</p></div>
+  </div>
+</nav>

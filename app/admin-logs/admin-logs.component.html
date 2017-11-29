@@ -1,0 +1,79 @@
+<!-- Admin Logs -->
+
+
+<div class="transaction scroll-frame" *ngIf="transactions?.length > 0; else notTransactions">
+  <div class="transaction" fxLayout="row"  fxLayout.sm="row" fxLayout.xs="column"
+       fxLayoutAlign="space-between none" *ngFor="let transaction of transactions">
+    <div class="transaction-time" fxFlex="14%">
+      <p class="transaction-content">{{ transaction.date | date : "dd.MM.yy" }}</p>
+      <p class="transaction-content">{{ transaction.time }}</p>
+      <p class="transaction-content">{{transaction.status}}</p>
+    </div>
+    <div class="transaction-body" fxFlex="84%" *ngIf="transaction.type=='SELL'">
+      <p class="transaction-content" *ngIf="transaction.user">{{ transaction.user.email }}
+        (<span class="user-info" (click)="openUserInfoModal(transaction.user.pk)">{{ transaction.user.full_name }}</span>)
+      </p>
+      <p class="transaction-content">
+        Sold {{ transaction.exchange_currency_from }} {{ transaction.exchange_amount_from }}
+        for {{ transaction.exchange_currency_to }} {{ transaction.exchange_amount_to }}
+      </p>
+      <p class="transaction-content">From {{ transaction.wallet_from.name }} to {{ transaction.wallet_to.name }}</p>
+    </div>
+    <div class="transaction-body" fxFlex="84%" *ngIf="transaction.type=='BUY'">
+      <p class="transaction-content" *ngIf="transaction.user">{{ transaction.user.email }}
+        (<span class="user-info" (click)="openUserInfoModal(transaction.user.pk)">{{ transaction.user.full_name }}</span>)
+      </p>
+      <p class="transaction-content">
+        Bought {{ transaction.exchange_currency_to }} {{ transaction.exchange_amount_to }}
+        for {{ transaction.exchange_currency_from }} {{ transaction.exchange_amount_from }}
+      </p>
+      <p class="transaction-content">From {{ transaction.wallet_from.name }} to {{ transaction.wallet_to.name}}</p>
+    </div>
+    <div class="transaction-body" fxFlex="84%" *ngIf="transaction.type=='S'">
+      <p class="transaction-content" *ngIf="transaction.user">{{ transaction.user.email }}
+        (<span class="user-info" (click)="openUserInfoModal(transaction.user.pk)">{{ transaction.user.full_name }}</span>)
+      </p>
+      <p class="transaction-content">Sent {{ transaction.currency_name }} {{ transaction.currency_amount }}</p>
+      <p class="transaction-content">From {{ transaction.wallet_from.name }} to {{ transaction.address_name }}</p>
+    </div>
+    <div class="transaction-body" fxFlex="84%" *ngIf="transaction.type=='R'">
+      <p class="transaction-content" *ngIf="transaction.user">{{ transaction.user.email }}
+        (<span class="user-info" (click)="openUserInfoModal(transaction.user.pk)">{{ transaction.user.full_name }}</span>)
+      </p>
+      <p class="transaction-content">Requested {{ transaction.currency_name }} {{ transaction.currency_amount }}</p>
+      <p class="transaction-content">From {{ transaction.address_name }}</p>
+    </div>
+    <div class="transaction-body" fxFlex="84%" *ngIf="transaction.type=='I'">
+      <p class="transaction-content" *ngIf="transaction.user">{{ transaction.user.email }}
+        (<span class="user-info" (click)="openUserInfoModal(transaction.user.pk)">{{ transaction.user.full_name }}</span>)
+      </p>
+      <p class="transaction-content">Requested {{ transaction.currency_name }} {{ transaction.currency_amount }}</p>
+      <p class="transaction-content">From {{ transaction.address_name }}</p>
+    </div>
+    <div class="transaction-body" fxFlex="84%" *ngIf="transaction.type=='W'">
+      <p class="transaction-content" *ngIf="transaction.user">{{ transaction.user.email }}
+        (<span class="user-info" (click)="openUserInfoModal(transaction.user.pk)">{{ transaction.user.full_name }}</span>)
+      </p>
+      <p class="transaction-content">Withdrew {{ transaction.currency_name }} {{ transaction.currency_amount }}</p>
+      <p class="transaction-content">From {{ transaction.wallet_from.name }} to {{ transaction.address }}</p>
+    </div>
+    <div class="transaction-body" fxFlex="84%" *ngIf="transaction.type=='D'">
+      <p class="transaction-content" *ngIf="transaction.user">{{ transaction.user.email }}
+        (<span class="user-info" (click)="openUserInfoModal(transaction.user.pk)">{{ transaction.user.full_name }}</span>)
+      </p>
+      <p class="transaction-content">Deposited {{ transaction.currency_name }} {{ transaction.currency_amount }}</p>
+      <p class="transaction-content" *ngIf="transaction.wallet_from">From {{ transaction.wallet_from.name }} to {{ transaction.address_name }}</p>
+      <p class="transaction-content" *ngIf="!transaction.wallet_from">To {{ transaction.address_name }}</p>
+    </div>
+    <div class="transaction-body" fxFlex="84%" *ngIf="transaction.type=='IH'">
+      <p class="transaction-content" *ngIf="transaction.user">{{ transaction.user.email }}
+        (<span class="user-info" (click)="openUserInfoModal(transaction.user.pk)">{{ transaction.user.full_name }}</span>)
+      </p>
+      <p class="transaction-content">Transfer {{ transaction.currency_name }} {{ transaction.currency_amount }}</p>
+      <p class="transaction-content">From {{ transaction.wallet_from.name }} to {{ transaction.wallet_to.name }}</p>
+    </div>
+  </div>
+</div>
+<ng-template #notTransactions>
+    <div class="transaction text-center"></div>
+</ng-template>

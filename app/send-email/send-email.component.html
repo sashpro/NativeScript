@@ -1,0 +1,43 @@
+<div class="modal-header send-modal">
+  <h4 class="modal-title pull-left">Send message to {{ full_name }}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body send-modal">
+  <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <form [formGroup]="emailForm" novalidate (ngSubmit)="emailForm.valid && sendEmail()">
+    <div class="form-group"
+         [ngClass]="{ 'has-error': emailForm.controls['subject'].invalid && emailForm.controls['subject'].touched }">
+      <label for="subject">Subject:</label>
+      <input class="form-control" name="subject" id="subject"
+             formControlName="subject" [formGroup]="emailForm"
+             [(ngModel)]="emailModel.subject">
+      <div class="help-block"
+           *ngIf="emailForm.controls['subject'].invalid && emailForm.controls['subject'].touched">
+        This field is required
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{ 'has-error': emailForm.controls['message'].invalid && emailForm.controls['message'].touched }">
+      <label for="message">Message:</label>
+      <input type="text" class="form-control" name="message" id="message"
+             formControlName="message" [formGroup]="emailForm"
+             [(ngModel)]="emailModel.message">
+      <div class="help-block"
+           *ngIf="emailForm.controls['message'].invalid && emailForm.controls['message'].touched">
+        This field is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button class="btn send-btn btn-block" [disabled]="emailForm.invalid">
+        Send Email
+      </button>
+    </div>
+  </form>
+
+</div>

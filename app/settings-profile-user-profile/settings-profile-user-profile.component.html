@@ -1,0 +1,62 @@
+<!-- Settings User Profile -->
+
+<h2 class="text-border-bottom">User Profile</h2>
+<div class="settings-container">
+  <div class="alert alert-success" *ngIf="messageSuccess">
+    Successful.
+  </div>
+  <div class="alert alert-danger" *ngIf="messageError">
+    {{ messageError }}
+  </div>
+  <div fxLayout="row" fxLayout.sm="row" fxLayout.xs="column"
+     fxLayoutAlign="space-between">
+    <div class="settings-col-left" fxFlex="50%">
+      <form name="form" (ngSubmit)="uploadPhoto()" #f="ngForm" novalidate>
+        <div class="media">
+          <div class="media-left">
+            <div class="image-upload">
+              <label for="avatar">
+                <img src="{{userModel.avatar}}" onError="this.src='/assets/img/no_user_photo.png'" class="media-object media-avatar"/>
+              </label>
+              <input id="avatar" type="file" name="avatar" accept="image/*"
+                     (change)="imageUpload($event)"/>
+            </div>
+          </div>
+          <div class="media-body">
+            <div class="row">
+              <div class="col-sm-8">
+                <h4 class="media-heading settings-heading">Change Picture</h4>
+                <p>Max file size is 20Mb. Click on picture to load photo.</p>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <button class="btn settings-btn">
+                    Upload
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="settings-col-right" fxFlex="50%">
+      <div class="media">
+        <div class="media-body">
+          <div class="row">
+            <div class="col-sm-8">
+              <h4 class="media-heading settings-heading">Change Password</h4>
+              <p>Enable 2-factor authentication on the security page.</p>
+            </div>
+            <div class="col-sm-4">
+              <button type="button" class="btn settings-btn"
+                      (click)="openChangePasswordComponent()">
+                Change
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

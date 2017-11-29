@@ -1,0 +1,16 @@
+<!-- Get Started -->
+
+<div class="container">
+<form name="form" (ngSubmit)="f.form.valid && getStarted()" #f="ngForm" novalidate>
+  <div class="input-group">
+    <input type="text" class="form-control input-email width100" name="email"
+           [(ngModel)]="authentication.email" #email="ngModel" required
+           placeholder="Enter your e-mail address" />
+    <span class="input-group-btn">
+      <button class="btn button-email">
+        Get Started
+      </button>
+    </span>
+  </div>
+</form>
+</div>

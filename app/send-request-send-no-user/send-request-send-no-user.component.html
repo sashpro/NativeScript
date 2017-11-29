@@ -1,0 +1,50 @@
+<div class="modal-header send-modal">
+  <h4 class="modal-title pull-left">Send confirmation</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body send-modal">
+  <div class="message" *ngIf="!successMessage">
+    This email is not registered in the system.
+    Please, check, if it is correct.
+    If you still want to send it, re-enter it and an automate invite will be generated and send to it.
+  </div>
+
+  <div class="alert alert-success" *ngIf="successMessage">
+    Successful.
+  </div>
+
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <form [formGroup]="sendForm" novalidate (ngSubmit)="sendForm.valid && send()">
+    <div class="form-group"
+         [ngClass]="{ 'has-error': sendForm.controls['repeat_receiver'].invalid && sendForm.controls['repeat_receiver'].touched }">
+      <label for="repeat_receiver" class="send-label">Repeat Recipient:</label>
+      <input type="text" class="form-control form-send" id="repeat_receiver" name="repeat_receiver"
+             formControlName="repeat_receiver" [formGroup]="sendForm"
+             [(ngModel)]="sendModel.repeat_receiver" placeholder="E-mail address"/>
+      <div class="help-block"
+           *ngIf="sendForm.controls['repeat_receiver'].invalid && sendForm.controls['repeat_receiver'].touched">
+        This field is required
+      </div>
+    </div>
+
+    <div class="form-group" fxLayout fxLayout.xs="column" fxLayoutWrap="wrap"
+         fxLayoutAlign="space-between">
+      <div fxFlex="59%"></div>
+      <div fxFlex="19%">
+        <button class="btn send-btn btn-block" [disabled]="sendForm.invalid || sending">
+          Send
+        </button>
+      </div>
+      <div fxFlex="19%">
+        <button class="btn btn-default btn-block" (click)="bsModalRef.hide()">Cancel</button>
+      </div>
+    </div>
+  </form>
+
+</div>

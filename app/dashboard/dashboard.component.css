@@ -1,0 +1,16 @@
+.graph {
+  width:100%
+}
+
+.currency-btn {
+  padding: 10px;
+  width:100%;
+  color: #1f77b4;
+  background-color: #FFFFFF;
+  border: 1px solid #6495ED;
+}
+
+.currency-btn.active {
+  color: #FFFFFF;
+  background-color: #6495ED;
+}

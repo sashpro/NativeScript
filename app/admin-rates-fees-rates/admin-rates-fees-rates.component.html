@@ -1,0 +1,77 @@
+<!-- Admin Rates Page -->
+
+<div class="page-color">
+  <h2 class="rate-title">Rates</h2>
+  <div class="alert alert-success" *ngIf="messageSuccess">
+    Successful.
+  </div>
+  <div class="alert alert-danger" *ngIf="messageError">
+    {{ messageError }}
+  </div>
+  <div class="rate-row" fxLayout fxLayout.xs="column" fxLayoutWrap="wrap"
+       fxLayoutAlign="space-between">
+    <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+         fxFlex="19%"></div>
+    <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+         fxFlex="19%">
+      Active rate
+    </div>
+    <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+         fxFlex="19%">
+      New rate
+    </div>
+    <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+         fxFlex="19%"></div>
+    <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+         fxFlex="19%"></div>
+  </div>
+
+  <div *ngFor="let rate of activeRates | orderBy: 'pair.pk': true">
+    <form name="form" #f="ngForm" novalidate>
+      <div class="rate-row" fxLayout fxLayout.xs="column" fxLayoutWrap="wrap"
+           fxLayoutAlign="space-between">
+        <div class="widget-sm field" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="19%">
+          {{ rate.pair.right_currency }}/{{ rate.pair.left_currency }} buy rate:
+        </div>
+        <div class="widget-sm field" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="19%">
+          {{ rate.buy_rate }}
+        </div>
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="19%">
+          <input type="number" class="form-control field" name="new_buy_rate"
+                 [(ngModel)]="rate.new_buy_rate" #new_buy_rate="ngModel"/>
+        </div>
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="19%"></div>
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="19%"></div>
+      </div>
+
+      <div class="rate-row" fxLayout fxLayout.xs="column" fxLayoutWrap="wrap"
+           fxLayoutAlign="space-between">
+        <div class="widget-sm field" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="19%">
+          {{ rate.pair.right_currency }}/{{ rate.pair.left_currency }} sell rate:
+        </div>
+        <div class="widget-sm field" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="19%">
+          {{ rate.sell_rate }}
+        </div>
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="19%">
+          <input type="number" class="form-control field" name="new_sell_rate"
+                 [(ngModel)]="rate.new_sell_rate" #new_sell_rate="ngModel"/>
+        </div>
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="19%">
+          <button type="button" class="btn rate-btn btn-block" (click)="changeRate(rate)"
+                  [disabled]="!rate.new_buy_rate || !rate.new_sell_rate">Save</button>
+        </div>
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="19%"></div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+.request-col {
+    margin-top: 40px;
+    padding: 20px;
+    color: #757575;
+}
+
+.request-label {
+    color: #6495ED;
+}
+
+.form-request {
+    border-color: #6495ED;
+}
+
+.request-btn-from {
+    margin: 0px;
+}
+
+.request-btn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+    background-color: #6495ED;
+    border: 1px solid #6495ED;
+    border-radius: 5px;
+}
+
+.request-btn:hover {
+    color: #6495ED;
+    background-color: #FFFFFF;
+}

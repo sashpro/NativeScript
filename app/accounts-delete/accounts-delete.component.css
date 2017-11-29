@@ -1,0 +1,14 @@
+.accounts-delete {
+    padding: 10px;
+    color: #757575;
+}
+
+.accounts-delete-btn {
+    color: #6495ED;
+    background-color: #FFFFFF;
+    border-color: #6495ED;
+}
+
+.accounts-delete-btn:hover {
+    background-color: #E8ECFF;
+}

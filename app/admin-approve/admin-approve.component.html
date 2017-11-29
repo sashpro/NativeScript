@@ -1,0 +1,53 @@
+<!-- Admin Approve Page -->
+
+<div class="alert alert-success" *ngIf="messageSuccess">
+  Successful.
+</div>
+<div class="alert alert-danger" *ngIf="messageError">
+  {{ messageError }}
+</div>
+
+<div *ngFor="let transaction of activeTransactions | orderBy: 'pk': True">
+  <form name="form" #f="ngForm" novalidate>
+    <div class="approve-row" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+         fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+      <div class="widget-sm field" fxLayoutWrap="wrap"
+           fxFlex="59%">
+        <ul class="text-list">
+          <li class="text-content">{{ transaction.date | date : "dd.MM.yy" }} {{ transaction.time }}</li>
+          <li class="text-content">{{ transaction.user.email }}
+            (<span class="user-info" (click)="openUserInfoModal(transaction.user.pk)">{{ transaction.user.full_name }}</span>)
+          </li>
+          <li class="text-content">
+            WITHDRAW {{ transaction.currency_name }} {{ transaction.currency_amount | currencyFormat: transaction.currency_name }} to
+            <span *ngIf=transaction.address_name>Address name:  {{ transaction.address_name }}</span>
+            <div>Address:  {{ transaction.address }}</div>
+          </li>
+        </ul>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+           fxFlex="9%">
+        <button type="button" class="btn button accept-btn btn-block"
+                (click)="acceptTransaction(transaction.hash)"
+                [disabled]="transaction.status=='ACCEPTED'">Accept</button>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+           fxFlex="9%">
+        <button type="button" class="btn button decline-btn btn-block"
+                (click)="declineTransaction(transaction.hash)"
+                [disabled]="transaction.status=='DENIED'">Decline</button>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+           fxFlex="9%">
+        <button type="button" class="btn button approve-btn btn-block"
+                (click)="approveTransaction(transaction.hash)"
+                [disabled]="transaction.status!='ACCEPTED' || transaction.status=='APPROVED'">Approve</button>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+           fxFlex="9%">
+        <button type="button" class="btn button btn-block" (click)="openSnedMessageModal(transaction.user.pk, transaction.user.full_name)">
+          <p>Send<br>message</p></button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,31 @@
+.accounts-transfer {
+    padding: 10px;
+    color: #757575;
+}
+
+input.ng-touched.ng-invalid {
+    background-color: rgb(255, 214, 214);
+}
+input.ng-touched.ng-valid {
+    background-color: #FFFFFF;
+}
+input.ng-touched:focus {
+    background-color: #FFFFFF;
+    border-color: #74d36b;
+    outline: 0;
+}
+
+.accounts-btn-group {
+    padding-top: 10px;
+    float: right;
+}
+
+.accounts-btn {
+    color: #6495ED;
+    background-color: #FFFFFF;
+    border-color: #6495ED;
+}
+
+.accounts-btn:hover {
+    background-color: #E8ECFF;
+}

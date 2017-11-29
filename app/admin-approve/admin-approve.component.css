@@ -1,0 +1,54 @@
+.approve-row {
+    padding-bottom: 8px;
+}
+
+.field {
+    padding: 6px;
+    color: #6495ED;
+    border: 1px solid #6495ED;
+    border-radius: 4px;
+}
+.text-list {
+    padding: 0px;
+    list-style-type: none;
+}
+
+.text-content {
+    margin: 6px;
+}
+
+.user-info {
+    text-decoration:underline;
+}
+
+.button {
+    padding: 8px;
+    color: #FFFFFF;
+    background-color: #6495ED;
+    border: 0px;
+    border-radius: 4px;
+}
+
+.accept-btn {
+    background-color: #32CD32;
+}
+
+.accept-btn:hover {
+    background-color: #59FF59;
+}
+
+.decline-btn {
+    background-color: #DC143C;
+}
+
+.decline-btn:hover {
+    background-color: #F71341;
+}
+
+.approve-btn {
+    background-color: #6495ED;
+}
+
+.approve-btn:hover {
+    background-color: #89AEFF;
+}

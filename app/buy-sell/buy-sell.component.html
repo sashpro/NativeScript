@@ -1,0 +1,33 @@
+<!-- Buy/Sell -->
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="buy-sell-col">
+      <div class="row buy-sell-navigation-row">
+        <div class="col-sm-6 buy-sell-navigation-col">
+          <button routerLink="/buy-sell/buy" type="button" class="btn buy-sell-navigation-btn"
+                  [routerLinkActive]="['buy-sell-navigation-btn-active']"
+                  (click)="changeOperation('BUY')">
+            Buy
+          </button>
+        </div>
+        <div class="col-sm-6 buy-sell-navigation-col">
+          <button routerLink="/buy-sell/sell" type="button" class="btn buy-sell-navigation-btn"
+                  [routerLinkActive]="['buy-sell-navigation-btn-active']"
+                  (click)="changeOperation('SELL')">
+            Sell
+          </button>
+        </div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div *ngIf="operation=='BUY'">
+      <buy-sell-operation-summary-buy></buy-sell-operation-summary-buy>
+    </div>
+    <div *ngIf="operation=='SELL'">
+      <buy-sell-operation-summary-sell></buy-sell-operation-summary-sell>
+    </div>
+  </div>
+</div>

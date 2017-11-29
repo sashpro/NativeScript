@@ -1,0 +1,66 @@
+<!-- Operation Summary Buy -->
+
+<div class="buy-col">
+  <div class="buy-border-bottom">
+    <div class="buy-container">
+      <div class="text-center">
+        <div class="buy-title">
+          Operation summary
+        </div>
+        <div>
+          Buying
+        </div>
+        <div *ngIf="buyModel.wallet_to && buyModel.other_amount">
+          {{ buyModel.amount | currencyFormat: buyModel.wallet_to.currency }} {{ buyModel.wallet_to.currency }}
+        </div>
+        <div *ngIf="buyModel.wallet_to && buyModel.wallet_from && buyModel.rate">
+          {{ buyModel.rate | currencyFormat: buyModel.wallet_from.currency}} {{ buyModel.wallet_from.currency }} per {{ buyModel.wallet_to.currency }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buy-border-bottom">
+    <div class="buy-container">
+      <div class="media">
+        <div class="media-left">
+          <span class="glyphicon glyphicon-folder-close buy-glyphicon" aria-hidden="true"></span>
+        </div>
+        <div class="media-body buy-media-body">
+          <h4 class="media-heading">Withdraw from</h4>
+          <p *ngIf="buyModel.wallet_from">{{ buyModel.wallet_from.name }}</p>
+        </div>
+      </div>
+      <div class="media">
+        <div class="media-left">
+          <span class="glyphicon glyphicon-time buy-glyphicon" aria-hidden="true"></span>
+        </div>
+        <div class="media-body buy-media-body">
+          <h4 class="media-heading">Available</h4>
+          <p>Instantly</p>
+        </div>
+      </div>
+      <div class="media">
+        <div class="media-left">
+          <span class="glyphicon glyphicon-folder-close buy-glyphicon" aria-hidden="true"></span>
+        </div>
+        <div class="media-body buy-media-body">
+          <h4 class="media-heading">Deposit to</h4>
+          <p *ngIf="buyModel.wallet_to">{{ buyModel.wallet_to.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buy-container">
+    <div class="media">
+      <div class="buy-media-left">
+        <h4 class="media-heading">Total payout</h4>
+      </div>
+      <div class="buy-media-right" *ngIf="buyModel.wallet_to">
+        <h4 class="media-heading">{{ buyModel.wallet_to.currency }} {{ buyModel.amount | currencyFormat: buyModel.wallet_to.currency }}</h4>
+      </div>
+    </div>
+
+  </div>
+</div>

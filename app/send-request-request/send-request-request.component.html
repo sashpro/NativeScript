@@ -1,0 +1,66 @@
+<!-- Request -->
+
+<div class="request-col">
+  <div class="alert alert-success" *ngIf="successMessage">
+    Successful.
+  </div>
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <form [formGroup]="requestForm" novalidate (ngSubmit)="requestForm.valid && requestMoney()">
+    <div class="form-group"
+         [ngClass]="{ 'has-error': requestForm.controls['requested_user_email'].invalid && requestForm.controls['requested_user_email'].touched }">
+      <label for="requested_user_email" class="request-label">Request coins from:</label>
+      <input type="text" class="form-control form-request" id="requested_user_email" name="requested_user_email"
+             formControlName="requested_user_email" [formGroup]="requestForm"
+             [(ngModel)]="requestModel.requested_user_email" placeholder="E-mail address"/>
+      <div class="help-block"
+           *ngIf="requestForm.controls['requested_user_email'].invalid && requestForm.controls['requested_user_email'].touched">
+        This field is required
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{ 'has-error': requestForm.controls['currency'].invalid && requestForm.controls['currency'].touched }">
+      <label for="currency" class="request-label">Currency:</label>
+      <select class="form-control form-request" id="currency" name="currency"
+              formControlName="currency" [formGroup]="requestForm"
+              [(ngModel)]="requestModel.currency">
+        <option *ngFor="let curr of currencyList" [value]="curr">
+          {{curr}}
+        </option>
+      </select>
+      <div class="help-block"
+           *ngIf="requestForm.controls['currency'].invalid && requestForm.controls['currency'].touched">
+        This field is required
+      </div>
+    </div>
+    <div class="form-group"
+         [ngClass]="{ 'has-error': requestForm.controls['amount'].invalid && requestForm.controls['amount'].touched }">
+      <label for="amount" class="request-label">Amount of coins to request:</label>
+      <input type="number" class="form-control form-request" id="amount" name="amount"
+             formControlName="amount" [formGroup]="requestForm"
+             [(ngModel)]="requestModel.amount" min="0"/>
+      <div class="help-block"
+           *ngIf="requestForm.controls['amount'].hasError('required') && requestForm.controls['amount'].touched">
+        This field is required
+      </div>
+      <div class="help-block"
+           *ngIf="requestForm.controls['amount'].hasError('min') && requestForm.controls['amount'].touched">
+        Invalid amount
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="message" class="request-label">Note:</label>
+      <input type="text" class="form-control form-request" id="message" name="message"
+             formControlName="message" [formGroup]="requestForm"
+             [(ngModel)]="requestModel.message" placeholder="Write an optional message to your addressee"/>
+    </div>
+    <div class="form-group request-btn-from">
+      <button class="btn request-btn btn-block" [disabled]="requestForm.invalid">
+        Request
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,46 @@
+<!-- Accounts Transfer -->
+
+<div class="accounts-transfer">
+  <div *ngIf="wallets?.length > 0; else notWallet">
+    <div class="alert alert-success" *ngIf="successMessage">
+      Successful.
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <form name="form" (ngSubmit)="f.form.valid && transfer()" #f="ngForm" novalidate>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !wallet_to.valid }">
+        <label for="wallet_to">Wallet to:</label>
+        <select class="form-control form-buy" name="wallet_to"
+                [(ngModel)]="transferModel.wallet_to" #wallet_to="ngModel"
+                required>
+          <option  *ngFor="let wallet of wallets" [value]=wallet.pk>
+            {{ wallet.name }}
+          </option>
+        </select>
+        <div *ngIf="f.submitted && !wallet_to.valid" class="help-block">Wallet to is required</div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !amount.valid }">
+        <label for="amount">Amount:</label>
+        <input type="number" class="form-control" name="amount" [(ngModel)]="transferModel.amount" #amount="ngModel" required/>
+        <div *ngIf="f.submitted && !amount.valid" class="help-block">Amount is required</div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !message.valid }">
+        <label for="message">Message:</label>
+        <input type="text" class="form-control" name="message" [(ngModel)]="transferModel.message" #message="ngModel"/>
+      </div>
+      <div class="form-group">
+        <button class="btn accounts-btn">
+          <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+          Transfer
+        </button>
+      </div>
+    </form>
+  </div>
+  <ng-template #notWallet>
+    <div class="text-center container-fluid">
+      <h4>You don't have any wallets to transfer money to.</h4>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,58 @@
+<!-- Admin Fees Page -->
+
+<div class="page-color">
+  <h2 class="fee-title">Fees</h2>
+  <div class="alert alert-success" *ngIf="messageSuccess">
+    Successful.
+  </div>
+  <div class="alert alert-danger" *ngIf="messageError">
+    {{ messageError }}
+  </div>
+  <div *ngFor="let fee of fees | orderBy: 'id': true">
+    <form name="form" #f="ngForm" novalidate>
+      <div class="fee-row" fxLayout fxLayout.xs="column" fxLayoutWrap="wrap"
+           fxLayoutAlign="space-between">
+        <div class="widget-sm field" fxLayoutWrap="wrap" fxLayoutAlign=""
+             fxFlex="29%">
+          {{ fee.operation }}: {{ fee.name }}
+        </div>
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="9%">
+          <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+               fxFlex="70%">
+            <input type="number" class="form-control field" name="percent_fee"
+                   [(ngModel)]="fee.percent_fee" #percent_fee="ngModel"/>
+          </div>
+          <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+               fxFlex="20%">
+             %
+          </div>
+        </div>
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="4%">
+          <span class="glyphicon glyphicon-plus"></span>
+        </div>
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="19%">
+          <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+               fxFlex="70%">
+            <input type="number" class="form-control field" name="const_fee"
+                   [(ngModel)]="fee.const_fee" #const_fee="ngModel"/>
+          </div>
+          <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+               fxFlex="20%">
+            {{ fee.currency }}
+          </div>
+        </div>
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="19%">
+          <button type="button" class="btn fee-btn btn-block"
+                  (click)="updateFee(fee)">Update</button>
+        </div>
+        <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+             fxFlex="14%">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

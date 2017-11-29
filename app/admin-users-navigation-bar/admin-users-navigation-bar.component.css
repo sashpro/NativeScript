@@ -1,0 +1,31 @@
+.users-col {
+    margin: 20px 0px;
+    color: #757575;
+    border: 1px solid #6495ED;
+    border-radius: 5px;
+}
+
+.users-navigation-row {
+    padding: 10px 20px;
+}
+
+.users-navigation-col {
+    padding: 2px;
+}
+
+.users-navigation-btn {
+    padding: 6px;
+    width:100%;
+    color: #6495ED;
+    background-color: #FFFFFF;
+    border-color: #6495ED;
+}
+
+.users-navigation-btn:hover {
+    background-color: #E8ECFF;
+}
+
+.users-navigation-btn.active {
+    color: #FFFFFF;
+    background-color: #6495ED;
+}

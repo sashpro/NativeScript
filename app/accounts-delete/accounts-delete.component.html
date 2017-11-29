@@ -1,0 +1,13 @@
+<!-- Accounts Delete -->
+
+<div class="accounts-delete">
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+  <h5>Do you want delete this wallet?</h5>
+  <div class="accounts-btn-group">
+    <button (click)="delete()" type="button" class="btn accounts-delete-btn">
+      Delete
+    </button>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="modal-header admin-modal">
+  <h2 class="modal-title pull-left">User information</h2>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body admin-modal">
+
+  <h3>{{ user.first_name }} {{ user.last_name }} ({{ user.email }})</h3>
+
+  <h4 class="admin-heading">Wallets</h4>
+
+  <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap"
+       fxLayoutAlign="space-between" *ngFor="let wallet of wallets">
+    <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign=""
+         fxFlex="69%">
+      <p>{{ wallet.name }}</p>
+    </div>
+    <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="end"
+         fxFlex="19%">
+      <p>{{ wallet.amount | currencyFormat: wallet.currency }}</p>
+    </div>
+    <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign=""
+         fxFlex="9%">
+      <p>{{ wallet.currency }}</p>
+    </div>
+  </div>
+
+  <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+    <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+         fxFlex="59%"></div>
+    <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+         fxFlex="19%">
+      <button [routerLink]="['/users', user.pk, 'information', user.pk]" class="btn admin-btn btn-block"
+              (click)="bsModalRef.hide()">To profile</button>
+    </div>
+    <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+         fxFlex="19%">
+      <button class="btn btn-default btn-block" (click)="bsModalRef.hide()">Close</button>
+    </div>
+  </div>
+</div>

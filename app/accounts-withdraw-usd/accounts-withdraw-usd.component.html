@@ -1,0 +1,110 @@
+<!-- Accounts Deposit USD -->
+
+<div class="modal-header withdraw-modal">
+  <h4 class="modal-title pull-left">Withdraw {{ walletCurrency }}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body withdraw-modal">
+  <div class="message" *ngIf="messageSuccess; else withdraw">
+    <p>Transaction request was sent to system manager for approval.</p>
+    <p>Please, check your email for transaction status.</p>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="messageError">
+    {{ messageError }}
+  </div>
+
+  <div *ngIf="services; else notServices">
+    <form name="form" (ngSubmit)="f.form.valid && withdrawUSD()" #f="ngForm" novalidate>
+
+      <!--Choose service -->
+      <div class="form-group">
+        <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+          <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="19%">
+            <label for="service">Service:</label>
+          </div>
+          <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="79%">
+            <div class="services" *ngFor="let item of services">
+              <label *ngIf="item.service_type=='ADVCASH'; else notADVCASH">
+                <input type="radio" id="service" name="service" [value]=item
+                   [(ngModel)]="withdrawModel.service" #service="ngModel">{{ item.name }}
+              </label>
+              <ng-template #notADVCASH>
+                <label><input type="radio" disabled>{{ item.name }}</label>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Withdraw form -->
+      <div *ngIf="withdrawModel.service">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email_walletId.valid }">
+          <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+            <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="19%">
+              <label class="withdraw-label" for="email_walletId">
+                Specify the recipient's purse or e-mail:
+              </label>
+            </div>
+            <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="79%">
+              <input type="text" class="form-control" id="email_walletId" name="email_walletId"
+                     [(ngModel)]="withdrawModel.email_walletId" #email_walletId="ngModel"/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !amount.valid }">
+          <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+            <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="19%">
+              <label class="withdraw-label" for="amount">Amount:</label>
+            </div>
+            <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="79%">
+              <input type="number" class="form-control" id="amount" name="amount"
+                     [(ngModel)]="withdrawModel.amount" #amount="ngModel"
+                     min="0" step="0.01" required (ngModelChange)="calculateAmount($event)"/>
+              <div *ngIf="f.submitted && !withdrawModel.amount" class="help-block">
+                This field is required
+              </div>
+
+              <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap"
+                   fxLayoutAlign="space-between" *ngIf="totalAmount">
+                <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="49%">
+                  <label class="withdraw-label" for="feeAmount">Fee:</label>
+                  <input type="text" class="form-control" id="feeAmount" name="feeAmount"
+                         [(ngModel)]="feeAmount" disabled/>
+                </div>
+                <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="49%">
+                  <label class="withdraw-label" for="totalAmount">Total amount:</label>
+                  <input type="text" class="form-control" id="totalAmount" name="totalAmount"
+                         [(ngModel)]="totalAmount" disabled/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="space-between">
+            <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="19%">
+              <label class="withdraw-label" for="message">Message:</label>
+            </div>
+            <div fxLayoutWrap="wrap" fxLayoutAlign="start" fxFlex="79%">
+              <input type="text" class="form-control" id="message" name="message"
+                     [(ngModel)]="withdrawModel.message" #message="ngModel"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" [disabled]="!withdrawModel.amount">Withdraw</button>
+        <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+      </div>
+    </form>
+  </div>
+  <ng-template #notServices>
+      <div class="text-center container-fluid">
+        <h4 class="media-heading">Loading...</h4>
+      </div>
+  </ng-template>
+</div>

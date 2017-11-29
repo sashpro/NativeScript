@@ -1,0 +1,21 @@
+.admin-modal {
+    color: #757575;
+    border-bottom: 1px solid #6495ED;
+}
+
+.admin-heading {
+    padding: 10px;
+    border-bottom: 1px solid #757575;
+}
+
+.admin-btn {
+    padding: 8px;
+    color: #FFFFFF;
+    background-color: #6495ED;
+    border: 0px;
+    border-radius: 4px;
+}
+
+.admin-btn:hover {
+    background-color: #89AEFF;
+}

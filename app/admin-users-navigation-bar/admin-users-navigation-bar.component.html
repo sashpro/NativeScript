@@ -1,0 +1,31 @@
+<!-- Accounts Navigation Bar -->
+
+
+<div class="users-navigation-row" fxLayout="row" fxLayout.xs="row" fxLayout.sm="row"
+   fxLayoutAlign="none">
+  <div class="users-navigation-col" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+       fxFlex="24%">
+    <button [routerLink]="['/users', userID, 'wallets', userID]" type="button"
+            class="btn users-navigation-btn" [routerLinkActive]="['active']">
+      Wallets
+    </button>
+  </div>
+  <div class="users-navigation-col" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+       fxFlex="24%">
+    <button [routerLink]="['/users', userID, 'information', userID]" type="button"
+            class="btn users-navigation-btn" [routerLinkActive]="['active']">
+      Information
+    </button>
+  </div>
+  <div class="users-navigation-col" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+       fxFlex="24%">
+    <button [routerLink]="['/users', userID, 'transactions', userID]" type="button"
+            class="btn users-navigation-btn" [routerLinkActive]="['active']">
+      Logs
+    </button>
+  </div>
+  <div class="users-navigation-col" fxLayoutWrap="wrap" fxLayoutAlign="space-around"
+       fxFlex="24%"></div>
+</div>
+
+<router-outlet></router-outlet>

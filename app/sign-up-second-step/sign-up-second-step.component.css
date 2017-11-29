@@ -1,0 +1,48 @@
+.sign-up-country-list {
+    display: block;
+}
+
+:host >>> .select2-container {
+    width: 100%!important;
+}
+
+:host >>> .select2-container--default .select2-selection--signle {
+    border-color: #ccc;
+}
+
+:host >>> .select2-container .select2-selection--signle {
+    padding: 3px 6px;
+    height: auto;
+}
+
+:host >>> .select2-container--default .select2-selection--signle .select2-selection__arrow {
+    height: 30px;
+}
+
+.sign-up-modal {
+    color: #757575;
+    border-bottom: 1px solid #6495ED;
+}
+
+.modal-phone-code-frame {
+    width: 10%;
+    text-align: center;
+    display: inline-block;
+}
+
+.modal-phone-number-frame {
+    width: 89%;
+    display: inline-block;
+}
+
+input.ng-touched.ng-invalid {
+    background-color: rgb(255, 214, 214);
+}
+input.ng-touched.ng-valid {
+    background-color: #FFFFFF;
+}
+input.ng-touched:focus {
+    background-color: #FFFFFF;
+    border-color: #74d36b;
+    outline: 0;
+}

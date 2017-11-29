@@ -1,0 +1,22 @@
+<!-- Admin Users Wallets -->
+
+<div class="users">
+  <h4 class="text-border-bottom">Wallets</h4>
+  <div *ngIf="wallets?.length > 0; else notWallets">
+    <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap"
+         fxLayoutAlign="space-between" *ngFor="let wallet of wallets">
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="49%">
+        <p>{{ wallet.name }}</p>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="end" fxFlex="34%">
+        <p>{{ wallet.amount | currencyFormat: wallet.currency }}</p>
+      </div>
+      <div class="widget-sm" fxLayoutWrap="wrap" fxLayoutAlign="" fxFlex="14%">
+        <p>{{ wallet.currency }}</p>
+      </div>
+    </div>
+  </div>
+  <ng-template #notWallets>
+    <h4 class="loading-message">Loading...</h4>
+  </ng-template>
+</div>

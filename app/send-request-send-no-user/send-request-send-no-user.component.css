@@ -1,0 +1,33 @@
+.send-modal {
+    color: #757575;
+    border-bottom: 1px solid #6495ED;
+}
+
+.message {
+    text-align: center;
+    margin: 10px 20px;
+}
+
+.send-label {
+    color: #6495ED;
+}
+
+.form-send {
+    border-color: #6495ED;
+}
+
+.send-btn-from {
+    margin: 0px;
+}
+
+.send-btn {
+    color: #FFFFFF;
+    background-color: #6495ED;
+    border: 1px solid #6495ED;
+    border-radius: 5px;
+}
+
+.send-btn:hover {
+    color: #6495ED;
+    background-color: #FFFFFF;
+}

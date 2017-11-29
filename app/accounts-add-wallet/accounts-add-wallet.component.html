@@ -1,0 +1,44 @@
+<!-- Accounts Add New Wallet -->
+
+<div class="modal-header add-wallet-modal">
+  <h4 class="modal-title pull-left">Add new wallet</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body add-wallet-modal">
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <form name="form" (ngSubmit)="f.form.valid && addWallet()" #f="ngForm" novalidate>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+      <label for="name">Wallets name:</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="wallet.name" #name="ngModel" required/>
+      <div *ngIf="f.submitted && !name.valid" class="help-block">Wallets name is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !currency.valid }">
+      <label for="currency">Currency:</label>
+      <select class="form-control" name="currency" [(ngModel)]="wallet.currency" #currency="ngModel" required>
+        <option *ngFor="let curr of currencyList" [value]="curr">
+          {{curr}}
+        </option>
+      </select>
+      <div *ngIf="f.submitted && !currency.valid" class="help-block">Choose currency</div>
+    </div>
+    <div class="form-group">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="default" [(ngModel)]="wallet.default">
+          Make this wallet primary
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary">Add wallet</button>
+      <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+    </div>
+  </form>
+
+</div>

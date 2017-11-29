@@ -1,0 +1,24 @@
+<!-- Settings Security Two-Factor Authentication -->
+
+<h2 class="text-border-bottom">Two-Factor Authentication</h2>
+<div class="settings-container" fxLayout="row" fxLayout.sm="row" fxLayout.xs="column"
+     fxLayoutAlign="space-between">
+  <div fxFlex="49%">
+    <h4 class="media-heading settings-heading">
+      Your two-factor method is {{ twoFactorStatus }}
+    </h4>
+    <p>Your account is not protected by two-step verification!
+      Enable an authenticator or add a phone number to get started.</p>
+    <button class="btn settings-btn" (click)="openAuthenticatorModal()"
+            *ngIf="twoFactorStatus!='active'; else deactivate">
+      Enable Authenticator
+    </button>
+    <ng-template #deactivate>
+      <button class="btn settings-btn" (click)="deactivateAuthenticator()">
+        Deactivate
+      </button>
+    </ng-template>
+  </div>
+  <div fxFlex="49%"></div>
+</div>
+

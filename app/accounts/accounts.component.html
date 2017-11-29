@@ -1,0 +1,46 @@
+<!-- Accounts -->
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="accounts-col scroll-frame">
+      <div *ngIf="wallets.length>0; else notWallets">
+        <div *ngFor="let wallet of wallets">
+          <div routerLink="{{wallet.pk}}" class="media accounts-media" [ngClass]="{'accounts-wallet-active': wallet.pk==selectedWalletID}">
+            <div class="media-left">
+              <img src="/assets/img/{{ wallet.currency }}.png" class="media-object" style="width:60px">
+            </div>
+            <div class="media-body accounts-media-body">
+              <h4 class="media-heading">{{ wallet.name }}</h4>
+              <p class="accounts-media-content">{{ wallet.amount | currencyFormat: wallet.currency }} {{ wallet.currency }}</p>
+            </div>
+            <div *ngIf="wallet.default" class="wallet-default-frmae">
+                <p><i class="fa fa-check" style="color: green"></i> Default</p>
+            </div>
+            <div class="accounts-btn-group">
+              <button (click)="openModalDeposit(wallet)" type="button" class="btn accounts-btn">
+                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                  Deposit</button>
+              <button (click)="openModalWithdraw(wallet)" type="button" class="btn accounts-btn">
+                  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+                  Withdraw</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #notWallets>
+        <div class="media accounts-media">
+          <div class="text-center container-fluid">
+            <h4 class="media-heading">Loading...</h4>
+          </div>
+        </div>
+      </ng-template>
+      <button (click)="openModalAddWallet()" type="button" class="btn new-accounts-btn btn-block">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Add new wallet
+      </button>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <router-outlet></router-outlet>
+  </div>
+</div>

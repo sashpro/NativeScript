@@ -1,0 +1,27 @@
+<!-- Settings Change password -->
+
+<div class="modal-header settings-modal">
+  <h4 class="modal-title pull-left">Enable Authenticator</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body settings-modal">
+  <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <form name="form" #f="ngForm" novalidate>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mfa_code.valid }">
+        <div class="help-block">
+          Please enter the code from the sms.
+        </div>
+        <input type="text" class="form-control" id="mfa_code" name="mfa_code"
+               [(ngModel)]="smsVerifyModel.mfa_code" #mfa_code="ngModel"/>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="smsVerify()">Enable Authenticator</button>
+        <button class="btn btn-default" (click)="smsRequest()">Resend code</button>
+      </div>
+    </form>
+
+</div>

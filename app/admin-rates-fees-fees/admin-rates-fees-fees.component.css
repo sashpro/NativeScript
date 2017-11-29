@@ -1,0 +1,32 @@
+.page-color {
+    color: #6495ED;
+}
+
+.fee-title {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #6495ED;
+}
+
+.fee-row {
+    padding-bottom: 8px;
+}
+
+.field {
+    padding: 6px;
+    border: 1px solid #6495ED;
+    border-radius: 4px;
+}
+
+.fee-btn {
+    padding: 8px;
+    color: #FFFFFF;
+    background-color: #6495ED;
+    border: 0px;
+    border-radius: 4px;
+}
+
+.fee-btn:hover {
+    background-color: #89AEFF;
+}

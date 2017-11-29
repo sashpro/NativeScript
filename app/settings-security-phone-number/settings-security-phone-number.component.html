@@ -1,0 +1,40 @@
+<!-- Settings Security Phone Number -->
+
+<h2 class="text-border-bottom">Phone Number</h2>
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
+<div class="settings-container" fxLayout="row" fxLayout.sm="row" fxLayout.xs="column"
+     fxLayoutAlign="space-between">
+  <div fxFlex="49%">
+    <form [formGroup]="phoneForm" novalidate (ngSubmit)="phoneForm.valid && openChangePhoneModal()">
+      <div class="form-group">
+        <label for="currentPhone">Your current phone:</label>
+        <input type="text" class="form-control  settings-form" id="currentPhone" name="currentPhone"
+               formControlName="currentPhone" [formGroup]="phoneForm"
+               [(ngModel)]="currentPhone"/>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{ 'has-error': phoneForm.controls['phone'].invalid && phoneForm.controls['phone'].touched }">
+        <label for="phone">New phone:</label>
+        <input type="number" class="form-control  settings-form" id="phone" name="phone"
+               formControlName="phone" [formGroup]="phoneForm"
+               [(ngModel)]="phoneModel.phone_number"/>
+        <div class="help-block"
+             *ngIf="phoneForm.controls['phone'].invalid && phoneForm.controls['phone'].touched">
+          This field is required
+        </div>
+      </div>
+
+      <div class="form-group send-btn-from">
+        <button class="btn settings-btn" [disabled]="phoneForm.invalid">
+          Change Phone
+        </button>
+      </div>
+    </form>
+  </div>
+  <div fxFlex="49%">
+  </div>
+</div>

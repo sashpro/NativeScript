@@ -1,0 +1,35 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var modal_options_class_1 = require("ngx-bootstrap/modal/modal-options.class");
+var forms_1 = require("@angular/forms");
+var index_1 = require("./../_services/index");
+var index_2 = require("./../_validations/index");
+var SettingsProfileChangePasswordComponent = (function () {
+    function SettingsProfileChangePasswordComponent(bsModalRef, userService, fb) {
+        this.bsModalRef = bsModalRef;
+        this.userService = userService;
+        this.passwordModel = {};
+        this.changePasswordForm = fb.group({ password: ['', forms_1.Validators.required],
+            confirmPassword: ['', forms_1.Validators.required] }, { validator: index_2.PasswordValidation.MatchPassword });
+    }
+    SettingsProfileChangePasswordComponent.prototype.ngOnInit = function () { };
+    SettingsProfileChangePasswordComponent.prototype.changePassword = function () {
+        var _this = this;
+        this.userService.changePassword(this.passwordModel)
+            .subscribe(function (data) { _this.bsModalRef.hide(); }, function (error) { _this.errorMessage = error.new_password2; });
+    };
+    SettingsProfileChangePasswordComponent = __decorate([
+        core_1.Component({
+            selector: 'modal-content',
+            templateUrl: './settings-profile-change-password.component.html',
+            styleUrls: ['./settings-profile-change-password.component.css']
+        }),
+        __metadata("design:paramtypes", [modal_options_class_1.BsModalRef,
+            index_1.UserService,
+            forms_1.FormBuilder])
+    ], SettingsProfileChangePasswordComponent);
+    return SettingsProfileChangePasswordComponent;
+}());
+exports.SettingsProfileChangePasswordComponent = SettingsProfileChangePasswordComponent;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2V0dGluZ3MtcHJvZmlsZS1jaGFuZ2UtcGFzc3dvcmQuY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsic2V0dGluZ3MtcHJvZmlsZS1jaGFuZ2UtcGFzc3dvcmQuY29tcG9uZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsc0NBQTBFO0FBRTFFLCtFQUFvRztBQUNwRyx3Q0FBMkU7QUFHM0UsOENBQWlGO0FBQ2pGLGlEQUFvRjtBQU9wRjtJQU1JLGdEQUFvQixVQUFzQixFQUNyQixXQUF3QixFQUNoQyxFQUFlO1FBRlIsZUFBVSxHQUFWLFVBQVUsQ0FBWTtRQUNyQixnQkFBVyxHQUFYLFdBQVcsQ0FBYTtRQUw3QyxrQkFBYSxHQUFRLEVBQUUsQ0FBQztRQU9wQixJQUFJLENBQUMsa0JBQWtCLEdBQUcsRUFBRSxDQUFDLEtBQUssQ0FBQyxFQUFFLFFBQVEsRUFBRSxDQUFDLEVBQUUsRUFBRSxrQkFBVSxDQUFDLFFBQVEsQ0FBQztZQUNuQyxlQUFlLEVBQUUsQ0FBQyxFQUFFLEVBQUUsa0JBQVUsQ0FBQyxRQUFRLENBQUMsRUFBQyxFQUM3QyxFQUFFLFNBQVMsRUFBRSwwQkFBa0IsQ0FBQyxhQUFhLEVBQUMsQ0FBQyxDQUFBO0lBQ3RGLENBQUM7SUFFRCx5REFBUSxHQUFSLGNBQWEsQ0FBQztJQUVkLCtEQUFjLEdBQWQ7UUFBQSxpQkFJQztRQUhHLElBQUksQ0FBQyxXQUFXLENBQUMsY0FBYyxDQUFDLElBQUksQ0FBQyxhQUFhLENBQUM7YUFDbEMsU0FBUyxDQUFFLFVBQUEsSUFBSSxJQUFNLEtBQUksQ0FBQyxVQUFVLENBQUMsSUFBSSxFQUFFLENBQUMsQ0FBQSxDQUFDLEVBQ2xDLFVBQUEsS0FBSyxJQUFNLEtBQUksQ0FBQyxZQUFZLEdBQUcsS0FBSyxDQUFDLGFBQWEsQ0FBQyxDQUFBLENBQUMsQ0FBQyxDQUFDO0lBQ3RGLENBQUM7SUFwQlEsc0NBQXNDO1FBTGxELGdCQUFTLENBQUM7WUFDUCxRQUFRLEVBQUUsZUFBZTtZQUN6QixXQUFXLEVBQUUsbURBQW1EO1lBQ2hFLFNBQVMsRUFBRSxDQUFDLGtEQUFrRCxDQUFDO1NBQ2xFLENBQUM7eUNBT2tDLGdDQUFVO1lBQ1IsbUJBQVc7WUFDNUIsbUJBQVc7T0FSbkIsc0NBQXNDLENBc0JsRDtJQUFELDZDQUFDO0NBQUEsQUF0QkQsSUFzQkM7QUF0Qlksd0ZBQXNDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29tcG9uZW50LCBPbkluaXQgfSAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IEJzTW9kYWxTZXJ2aWNlIH0gICAgICAgICAgICAgICAgICAgICAgICAgICAgZnJvbSAnbmd4LWJvb3RzdHJhcC9tb2RhbCc7XG5pbXBvcnQgeyBCc01vZGFsUmVmIH0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZyb20gJ25neC1ib290c3RyYXAvbW9kYWwvbW9kYWwtb3B0aW9ucy5jbGFzcyc7XG5pbXBvcnQgeyBGb3JtR3JvdXAsIEZvcm1CdWlsZGVyLCBWYWxpZGF0b3JzIH0gICAgICAgIGZyb20gJ0Bhbmd1bGFyL2Zvcm1zJztcblxuaW1wb3J0IHsgQXV0aGVudGljYXRpb24gfSAgICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tICcuLy4uL19tb2RlbHMvaW5kZXgnO1xuaW1wb3J0IHsgVXNlclNlcnZpY2UgfSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tICcuLy4uL19zZXJ2aWNlcy9pbmRleCc7XG5pbXBvcnQgeyBQYXNzd29yZFZhbGlkYXRpb24gfSAgICAgICAgICAgICAgICAgICAgICAgIGZyb20gJy4vLi4vX3ZhbGlkYXRpb25zL2luZGV4JztcblxuQENvbXBvbmVudCh7XG4gICAgc2VsZWN0b3I6ICdtb2RhbC1jb250ZW50JyxcbiAgICB0ZW1wbGF0ZVVybDogJy4vc2V0dGluZ3MtcHJvZmlsZS1jaGFuZ2UtcGFzc3dvcmQuY29tcG9uZW50Lmh0bWwnLFxuICAgIHN0eWxlVXJsczogWycuL3NldHRpbmdzLXByb2ZpbGUtY2hhbmdlLXBhc3N3b3JkLmNvbXBvbmVudC5jc3MnXVxufSlcbmV4cG9ydCBjbGFzcyBTZXR0aW5nc1Byb2ZpbGVDaGFuZ2VQYXNzd29yZENvbXBvbmVudCBpbXBsZW1lbnRzIE9uSW5pdCB7XG5cbiAgICBwYXNzd29yZE1vZGVsOiBhbnkgPSB7fTtcbiAgICBlcnJvck1lc3NhZ2U6IHN0cmluZztcbiAgICBjaGFuZ2VQYXNzd29yZEZvcm06IEZvcm1Hcm91cDtcblxuICAgIGNvbnN0cnVjdG9yKCBwdWJsaWMgYnNNb2RhbFJlZjogQnNNb2RhbFJlZixcbiAgICAgICAgICAgICAgICAgcHJpdmF0ZSB1c2VyU2VydmljZTogVXNlclNlcnZpY2UsXG4gICAgICAgICAgICAgICAgIGZiOiBGb3JtQnVpbGRlciApIHtcbiAgICAgICAgdGhpcy5jaGFuZ2VQYXNzd29yZEZvcm0gPSBmYi5ncm91cCh7IHBhc3N3b3JkOiBbJycsIFZhbGlkYXRvcnMucmVxdWlyZWRdLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29uZmlybVBhc3N3b3JkOiBbJycsIFZhbGlkYXRvcnMucmVxdWlyZWRdfSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB7IHZhbGlkYXRvcjogUGFzc3dvcmRWYWxpZGF0aW9uLk1hdGNoUGFzc3dvcmR9KVxuICAgIH1cblxuICAgIG5nT25Jbml0KCkgeyB9XG5cbiAgICBjaGFuZ2VQYXNzd29yZCgpIHtcbiAgICAgICAgdGhpcy51c2VyU2VydmljZS5jaGFuZ2VQYXNzd29yZCh0aGlzLnBhc3N3b3JkTW9kZWwpXG4gICAgICAgICAgICAgICAgICAgICAgICAuc3Vic2NyaWJlKCBkYXRhID0+IHsgdGhpcy5ic01vZGFsUmVmLmhpZGUoKTt9LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXJyb3IgPT4geyB0aGlzLmVycm9yTWVzc2FnZSA9IGVycm9yLm5ld19wYXNzd29yZDI7fSk7XG4gICAgfVxuXG59XG4iXX0=

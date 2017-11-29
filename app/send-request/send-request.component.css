@@ -1,0 +1,25 @@
+.send-request-col {
+  color: #757575;
+  border: 1px solid #6495ED;
+  border-radius: 5px;
+}
+
+.send-request-navigation-row {
+  margin: 0px;
+}
+
+.send-request-navigation-col {
+  padding: 0px;
+}
+
+.send-request-navigation-btn {
+  padding: 10px;
+  width:100%;
+  color: #6495ED;
+  background-color: #FFFFFF;
+}
+
+.send-request-navigation-btn-active {
+  color: #FFFFFF;
+  background-color: #6495ED;
+}

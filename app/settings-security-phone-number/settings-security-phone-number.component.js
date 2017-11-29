@@ -1,0 +1,42 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
+var modal_1 = require("ngx-bootstrap/modal");
+var settings_security_change_phone_number_component_1 = require("../settings-security-change-phone-number/settings-security-change-phone-number.component");
+var index_1 = require("../_services/index");
+var index_2 = require("../_models/index");
+var SettingsSecurityPhoneNumberComponent = (function () {
+    function SettingsSecurityPhoneNumberComponent(modalService, userService) {
+        this.modalService = modalService;
+        this.userService = userService;
+        this.phoneModel = new index_2.ChangePhone;
+        this.phoneForm = new forms_1.FormGroup({
+            "currentPhone": new forms_1.FormControl({ value: "", disabled: true }, forms_1.Validators.required),
+            "phone": new forms_1.FormControl("", [forms_1.Validators.required, forms_1.Validators.minLength(9), forms_1.Validators.maxLength(10)])
+        });
+    }
+    SettingsSecurityPhoneNumberComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.userService.getCurrentUser()
+            .subscribe(function (data) { if (data) {
+            _this.currentPhone = data.phone;
+        } });
+    };
+    SettingsSecurityPhoneNumberComponent.prototype.openChangePhoneModal = function () {
+        this.changePhoneModal = this.modalService.show(settings_security_change_phone_number_component_1.SettingsSecurityChangePhoneNumberComponent);
+        this.changePhoneModal.content.phone = this.phoneForm.value.phone;
+    };
+    SettingsSecurityPhoneNumberComponent = __decorate([
+        core_1.Component({
+            selector: 'settings-security-phone-number',
+            templateUrl: 'settings-security-phone-number.component.html',
+            styleUrls: ['settings-security-phone-number.component.css']
+        }),
+        __metadata("design:paramtypes", [modal_1.BsModalService,
+            index_1.UserService])
+    ], SettingsSecurityPhoneNumberComponent);
+    return SettingsSecurityPhoneNumberComponent;
+}());
+exports.SettingsSecurityPhoneNumberComponent = SettingsSecurityPhoneNumberComponent;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2V0dGluZ3Mtc2VjdXJpdHktcGhvbmUtbnVtYmVyLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbInNldHRpbmdzLXNlY3VyaXR5LXBob25lLW51bWJlci5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxzQ0FBMkU7QUFDM0Usd0NBQTRFO0FBQzVFLDZDQUFpRjtBQUdqRiw0SkFBc0o7QUFDdEosNENBQWdGO0FBQ2hGLDBDQUE4RTtBQU85RTtJQVFJLDhDQUFxQixZQUE0QixFQUM1QixXQUF3QjtRQUR4QixpQkFBWSxHQUFaLFlBQVksQ0FBZ0I7UUFDNUIsZ0JBQVcsR0FBWCxXQUFXLENBQWE7UUFON0MsZUFBVSxHQUFHLElBQUksbUJBQVcsQ0FBQztRQU96QixJQUFJLENBQUMsU0FBUyxHQUFHLElBQUksaUJBQVMsQ0FBQztZQUMzQixjQUFjLEVBQUUsSUFBSSxtQkFBVyxDQUFDLEVBQUMsS0FBSyxFQUFFLEVBQUUsRUFBRSxRQUFRLEVBQUUsSUFBSSxFQUFDLEVBQUUsa0JBQVUsQ0FBQyxRQUFRLENBQUM7WUFDakYsT0FBTyxFQUFFLElBQUksbUJBQVcsQ0FBQyxFQUFFLEVBQUUsQ0FBQyxrQkFBVSxDQUFDLFFBQVEsRUFBRSxrQkFBVSxDQUFDLFNBQVMsQ0FBQyxDQUFDLENBQUMsRUFBRSxrQkFBVSxDQUFDLFNBQVMsQ0FBQyxFQUFFLENBQUMsQ0FBQyxDQUFDO1NBQ3pHLENBQUMsQ0FBQztJQUNQLENBQUM7SUFFRCx1REFBUSxHQUFSO1FBQUEsaUJBR0M7UUFGRyxJQUFJLENBQUMsV0FBVyxDQUFDLGNBQWMsRUFBRTthQUM1QixTQUFTLENBQUMsVUFBQSxJQUFJLElBQU0sRUFBRSxDQUFDLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQztZQUFDLEtBQUksQ0FBQyxZQUFZLEdBQUcsSUFBSSxDQUFDLEtBQUssQ0FBQztRQUFBLENBQUMsQ0FBQSxDQUFDLENBQUMsQ0FBQztJQUM1RSxDQUFDO0lBRUQsbUVBQW9CLEdBQXBCO1FBQ0ksSUFBSSxDQUFDLGdCQUFnQixHQUFHLElBQUksQ0FBQyxZQUFZLENBQUMsSUFBSSxDQUFDLDRGQUEwQyxDQUFDLENBQUM7UUFDM0YsSUFBSSxDQUFDLGdCQUFnQixDQUFDLE9BQU8sQ0FBQyxLQUFLLEdBQUcsSUFBSSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsS0FBSyxDQUFDO0lBQ3JFLENBQUM7SUF4QlEsb0NBQW9DO1FBTGhELGdCQUFTLENBQUM7WUFDUCxRQUFRLEVBQUUsZ0NBQWdDO1lBQzFDLFdBQVcsRUFBRSwrQ0FBK0M7WUFDNUQsU0FBUyxFQUFFLENBQUMsOENBQThDLENBQUM7U0FDOUQsQ0FBQzt5Q0FTcUMsc0JBQWM7WUFDZixtQkFBVztPQVRwQyxvQ0FBb0MsQ0F5QmhEO0lBQUQsMkNBQUM7Q0FBQSxBQXpCRCxJQXlCQztBQXpCWSxvRkFBb0MiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21wb25lbnQsIE9uSW5pdCB9ICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IEZvcm1Hcm91cCwgRm9ybUNvbnRyb2wsIFZhbGlkYXRvcnN9ICAgICAgICAgIGZyb20gJ0Bhbmd1bGFyL2Zvcm1zJztcbmltcG9ydCB7IEJzTW9kYWxTZXJ2aWNlIH0gICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZyb20gJ25neC1ib290c3RyYXAvbW9kYWwnO1xuaW1wb3J0IHsgQnNNb2RhbFJlZiB9ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZnJvbSAnbmd4LWJvb3RzdHJhcC9tb2RhbC9tb2RhbC1vcHRpb25zLmNsYXNzJztcblxuaW1wb3J0IHsgU2V0dGluZ3NTZWN1cml0eUNoYW5nZVBob25lTnVtYmVyQ29tcG9uZW50IH0gZnJvbSAnLi4vc2V0dGluZ3Mtc2VjdXJpdHktY2hhbmdlLXBob25lLW51bWJlci9zZXR0aW5ncy1zZWN1cml0eS1jaGFuZ2UtcGhvbmUtbnVtYmVyLmNvbXBvbmVudCc7XG5pbXBvcnQgeyBVc2VyU2VydmljZSB9ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tICcuLi9fc2VydmljZXMvaW5kZXgnO1xuaW1wb3J0IHsgQ2hhbmdlUGhvbmUgfSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZnJvbSAnLi4vX21vZGVscy9pbmRleCc7XG5cbkBDb21wb25lbnQoe1xuICAgIHNlbGVjdG9yOiAnc2V0dGluZ3Mtc2VjdXJpdHktcGhvbmUtbnVtYmVyJyxcbiAgICB0ZW1wbGF0ZVVybDogJ3NldHRpbmdzLXNlY3VyaXR5LXBob25lLW51bWJlci5jb21wb25lbnQuaHRtbCcsXG4gICAgc3R5bGVVcmxzOiBbJ3NldHRpbmdzLXNlY3VyaXR5LXBob25lLW51bWJlci5jb21wb25lbnQuY3NzJ11cbn0pXG5leHBvcnQgY2xhc3MgU2V0dGluZ3NTZWN1cml0eVBob25lTnVtYmVyQ29tcG9uZW50IGltcGxlbWVudHMgT25Jbml0IHtcblxuICAgIGN1cnJlbnRQaG9uZTogc3RyaW5nO1xuICAgIHBob25lTW9kZWwgPSBuZXcgQ2hhbmdlUGhvbmU7XG4gICAgcGhvbmVGb3JtOiBGb3JtR3JvdXA7XG4gICAgY2hhbmdlUGhvbmVNb2RhbDogQnNNb2RhbFJlZjtcbiAgICBlcnJvck1lc3NhZ2U6IHN0cmluZztcblxuICAgIGNvbnN0cnVjdG9yKCBwcml2YXRlIG1vZGFsU2VydmljZTogQnNNb2RhbFNlcnZpY2UsXG4gICAgICAgICAgICAgICAgIHByaXZhdGUgdXNlclNlcnZpY2U6IFVzZXJTZXJ2aWNlICkge1xuICAgICAgICB0aGlzLnBob25lRm9ybSA9IG5ldyBGb3JtR3JvdXAoe1xuICAgICAgICAgICAgXCJjdXJyZW50UGhvbmVcIjogbmV3IEZvcm1Db250cm9sKHt2YWx1ZTogXCJcIiwgZGlzYWJsZWQ6IHRydWV9LCBWYWxpZGF0b3JzLnJlcXVpcmVkKSxcbiAgICAgICAgICAgIFwicGhvbmVcIjogbmV3IEZvcm1Db250cm9sKFwiXCIsIFtWYWxpZGF0b3JzLnJlcXVpcmVkLCBWYWxpZGF0b3JzLm1pbkxlbmd0aCg5KSwgVmFsaWRhdG9ycy5tYXhMZW5ndGgoMTApXSlcbiAgICAgICAgfSk7XG4gICAgfVxuXG4gICAgbmdPbkluaXQoKSB7XG4gICAgICAgIHRoaXMudXNlclNlcnZpY2UuZ2V0Q3VycmVudFVzZXIoKVxuICAgICAgICAgICAgLnN1YnNjcmliZShkYXRhID0+IHsgaWYgKGRhdGEpIHsgdGhpcy5jdXJyZW50UGhvbmUgPSBkYXRhLnBob25lO319KTtcbiAgICB9XG5cbiAgICBvcGVuQ2hhbmdlUGhvbmVNb2RhbCgpIHtcbiAgICAgICAgdGhpcy5jaGFuZ2VQaG9uZU1vZGFsID0gdGhpcy5tb2RhbFNlcnZpY2Uuc2hvdyhTZXR0aW5nc1NlY3VyaXR5Q2hhbmdlUGhvbmVOdW1iZXJDb21wb25lbnQpO1xuICAgICAgICB0aGlzLmNoYW5nZVBob25lTW9kYWwuY29udGVudC5waG9uZSA9IHRoaXMucGhvbmVGb3JtLnZhbHVlLnBob25lO1xuICAgIH1cbn1cbiJdfQ==

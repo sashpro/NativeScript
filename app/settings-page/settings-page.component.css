@@ -1,0 +1,12 @@
+.navbar-settings {
+  background-color: #FFFFFF;
+}
+
+.settings-link {
+  color: #757575;
+}
+
+.settings-navigation-active {
+  color: #6495ED;
+  border-bottom: 3px solid #6495ED;
+}

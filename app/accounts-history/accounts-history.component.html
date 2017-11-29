@@ -1,0 +1,50 @@
+<!-- Accounts History -->
+
+<div *ngIf="transactions?.length > 0; else notTransactions">
+  <div class="transaction" fxLayout="row" fxLayout.xs="row" fxLayout.sm="row"
+       fxLayoutAlign="space-between none" *ngFor="let transaction of transactions">
+    <div class="transaction-time" fxFlex="24%">
+      <p class="transaction-content">{{ transaction.date | date : "dd.MM.yy" }}</p>
+      <p class="transaction-content">{{ transaction.time }}</p>
+      <p class="transaction-content">{{ transaction.status }}</p>
+    </div>
+    <div class="transaction-body" fxFlex="74%" *ngIf="transaction.type=='SELL'">
+      <p class="transaction-content">
+        Sold {{ transaction.exchange_currency_from }} {{ transaction.exchange_amount_from }}
+        for {{ transaction.exchange_currency_to }} {{ transaction.exchange_amount_to }}
+      </p>
+      <p class="transaction-content">From {{ transaction.wallet_from.name }} to {{ transaction.wallet_to.name }}</p>
+    </div>
+    <div class="transaction-body" fxFlex="74%" *ngIf="transaction.type=='BUY'">
+      <p class="transaction-content">
+        Bought {{ transaction.exchange_currency_to }} {{ transaction.exchange_amount_to }}
+        for {{ transaction.exchange_currency_from }} {{ transaction.exchange_amount_from }}
+      </p>
+      <p class="transaction-content">From {{ transaction.wallet_from.name }} to {{ transaction.wallet_to.name}}</p>
+    </div>
+
+    <div class="transaction-body" fxFlex="74%" *ngIf="transaction.type=='S'">
+      <p class="transaction-content">Sent {{ transaction.currency_name }} {{ transaction.currency_amount }}</p>
+      <p class="transaction-content">From {{ transaction.wallet_from.name }} to {{ transaction.address_name }}</p>
+    </div>
+    <div class="transaction-body" fxFlex="74%" *ngIf="transaction.type=='R'">
+      <p class="transaction-content">Requested {{ transaction.currency_amount }} {{ transaction.currency_name }} </p>
+      <p class="transaction-content">From {{ transaction.address_name }}</p>
+    </div>
+    <div class="transaction-body" fxFlex="74%" *ngIf="transaction.type=='I'">
+      <p class="transaction-content">Requested {{ transaction.currency_amount }}  {{ transaction.currency_name }}</p>
+      <p class="transaction-content">From {{ transaction.address_name }}</p>
+    </div>
+    <div class="transaction-body" fxFlex="74%" *ngIf="transaction.type=='W'">
+      <p class="transaction-content">Withdrew {{ transaction.currency_amount }} {{ transaction.currency_name }} </p>
+      <p class="transaction-content">From {{ transaction.wallet_from.name }} to {{ transaction.address }}</p>
+    </div>
+    <div class="transaction-body" fxFlex="74%" *ngIf="transaction.type=='D'">
+      <p class="transaction-content">Deposited {{ transaction.currency_name }} {{ transaction.currency_amount }}</p>
+      <p class="transaction-content">From {{ transaction.wallet_from.name }} to {{ transaction.address_name }}</p>
+    </div>
+  </div>
+</div>
+<ng-template #notTransactions>
+    <div class="transaction text-center">You haven't made any transactions yet.</div>
+</ng-template>

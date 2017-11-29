@@ -1,0 +1,129 @@
+<!-- Navigation Bar -->
+
+<nav class="navbar-cryptosite">
+  <div class="container-fluid">
+    <div class="navbar-header navbar-logo-box">
+      <a routerLink="/">
+        <img src="/assets/img/logo.png" class="navbar-logo">
+      </a>
+    </div>
+
+    <!-- If current user is authentication -->
+    <div *ngIf="currentUser; else navbarlogin">
+
+      <!-- If current user is user -->
+      <div *ngIf="currentUser.role=='user'">
+        <div class="menu-bar-responcive" (click)="showMenu()">
+          <div class="hamburger-nav-menu here" [ngClass]="{'open': mobileMenuSate == true}">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <ul class="nav navbar-nav navbar-right" [ngClass]="{'menu-bar-mobile': mobileMenuSate == false}">
+        <li class="dropdown user-dropdown-li-element"><a class="dropdown-toggle" data-toggle="dropdown"> Help
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <li><a href="download/legal_docs/vemex_quick_start.pdf" target="_blank"> Quick Start </a></li>
+            <li class="divider"></li>
+            <li><a href="mailto:support@vemex.net?subject=A%20question%20about%20site%20functioning"> Ask a Question </a></li>
+          </ul>
+        </li>
+        <li class="navbar-notlogged-text"><p class="navbar-text" *ngIf="FRGCrate"> 1 FRGC = $ {{ FRGCrate | currencyFormat: 'USD' }} </p></li>
+        <li class="navbar-notlogged-text"><p class="navbar-text" *ngIf="BTCrate"> 1 BTC = $ {{ BTCrate | currencyFormat: 'USD' }} </p></li>
+        <li class="avatar-li-element">
+          <div class="avatar-size-box">
+            <img src="{{currentUser.avatar}}" onError="this.src='/assets/img/no_user_photo.png'" class="media-object media-avatar avatar-size"/>
+          </div>
+        </li>
+        <li class="dropdown user-dropdown-li-element"><a class="dropdown-toggle" data-toggle="dropdown"> {{currentUser.first_name + ' ' + this.currentUser.last_name}}
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <li><a routerLink="/settings"> User Profile </a></li>
+            <li class="divider"></li>
+            <li><a (click)="doLogout()"> Logout </a></li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+
+      <!-- If current user is manager -->
+      <div *ngIf="currentUser.role=='manager'">
+        <ul class="nav navbar-nav">
+          <li><p class="navbar-text navbar-manager"> Manager Mode </p></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="currentUser.role=='manager'">
+        <li class="navbar-notlogged-text"><p class="navbar-text" *ngIf="FRGCrate"> 1 FRGC = $ {{ FRGCrate | currencyFormat: 'USD' }} </p></li>
+        <li class="navbar-notlogged-text"><p class="navbar-text" *ngIf="BTCrate"> 1 BTC = $ {{ BTCrate | currencyFormat: 'USD' }} </p></li>
+          <li>
+            <div class="avatar-size-box">
+              <img src="{{currentUser.avatar}}" onError="this.src='/assets/img/no_user_photo.png'" class="media-object media-avatar avatar-size"/>
+            </div>
+          </li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> {{currentUser.first_name + ' ' + this.currentUser.last_name}}
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <li role="presentation"><a (click)="doLogout()" role="menuitem" tabindex="-1"> Logout </a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- If current user is not authentication -->
+    <ng-template #navbarlogin>
+      <div class="menu-bar-responcive" (click)="showMenu()">
+        <div class="hamburger-nav-menu" [ngClass]="{'open': mobileMenuSate == true}">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <ul class="nav navbar-nav navbar-right" [ngClass]="{'menu-bar-mobile': mobileMenuSate == false}">
+        <li class="dropdown user-dropdown-li-element"><a class="dropdown-toggle" data-toggle="dropdown"> Help
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <li><a href="download/legal_docs/vemex_quick_start.pdf" target="_blank"> Quick Start </a></li>
+            <li class="divider"></li>
+            <li><a href="mailto:support@vemex.net?subject=A%20question%20about%20site%20functioning"> Ask a Question </a></li>
+          </ul>
+        </li>
+        <li class="navbar-notlogged-text"><p class="navbar-text navbar-rate" *ngIf="FRGCrate"> 1 FRGC = $ {{ FRGCrate | currencyFormat: 'USD' }} </p></li>
+        <li class="navbar-notlogged-text"><p class="navbar-text navbar-rate" *ngIf="BTCrate"> 1 BTC = $ {{ BTCrate | currencyFormat: 'USD' }} </p></li>
+        <li class="navbar-notlogged-text"><a class="navbar-sign-in-btn" (click)="openModalWithComponent()"> Sign In </a></li>
+        <li class="navbar-notlogged-text"><a routerLink="/sign-up"> Sign Up </a></li>
+      </ul>
+    </ng-template>
+
+  </div>
+</nav>
+
+<div *ngIf="currentUser">
+
+  <!-- If current user is user -->
+  <div *ngIf="currentUser.role=='user'">
+    <nav class="navbar-container navbar-default">
+      <div class="container-fluid" [ngClass]="{'menu-bar-mobile': mobileMenuSate == false}">
+        <ul class="nav navbar-nav">
+          <li class="left"><a routerLink="/dashboard" [routerLinkActive]="['navigation-active']">
+            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Dashboard
+          </a></li>
+          <li class="left"><a routerLink="/buy-sell" [routerLinkActive]="['navigation-active']">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Buy / Sell
+          </a></li>
+          <li class="left"><a routerLink="/send-request" [routerLinkActive]="['navigation-active']">
+            <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Send / Request
+          </a></li>
+          <li class="left"><a routerLink="/accounts" [routerLinkActive]="['navigation-active']">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Accounts
+          </a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+        
+  <!-- If current user is manager -->
+  <div *ngIf="currentUser.role=='manager'">
+    <admin-navigation-bar></admin-navigation-bar>
+  </div>
+</div>

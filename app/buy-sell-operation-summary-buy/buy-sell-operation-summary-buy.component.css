@@ -1,0 +1,34 @@
+.buy-col {
+    color: #6495ED;
+    border: 1px solid #6495ED;
+    border-radius: 5px;
+}
+
+.buy-container {
+    margin: 2%;
+}
+
+.buy-border-bottom {
+    border-bottom: 1px solid #6495ED;
+}
+
+.buy-title{
+    padding-bottom: 30px;
+}
+
+.buy-glyphicon {
+    margin:10px;
+    font-size: 30px;
+}
+
+.buy-media-body {
+    padding: 10px;
+}
+
+.buy-media-left {
+    float: left;
+}
+
+.buy-media-right {
+    float: right;
+}

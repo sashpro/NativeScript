@@ -1,0 +1,57 @@
+.container-fluid {
+  margin: 0 10%;
+}
+
+.signup-form-frame {
+  min-width: 300px;
+}
+
+.message {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: 	#6495ED;
+}
+
+.error-block {
+  color: #A94442;
+}
+
+input.ng-touched.ng-invalid {
+  background-color: rgb(255, 214, 214);
+}
+
+input.ng-touched.ng-valid {
+  background-color: #FFFFFF;
+}
+
+input.ng-touched:focus {
+  background-color: #FFFFFF;
+  border-color: #74d36b;
+  outline: 0;
+}
+
+.button-group {
+  color: #757575;
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+.sign-up-image {
+  width: 78%;
+}
+
+@media (max-width: 1200px) {
+  .container-fluid {
+    margin: 0 5%;
+  }
+}
+
+@media (max-width: 840px) {
+  .mobile-frame-signup-image {
+    display: none;
+  }
+
+  .signup-form-frame {
+    width: 100%;
+  }
+}
